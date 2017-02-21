@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Moya
 
 class HomeViewController: UIViewController {
     
@@ -46,10 +47,30 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
+        makeMoyaCall()
+        /*
         let alertController = UIAlertController(title: "TV", message: "Movies Coming Soon", preferredStyle:.alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
-        self.present(alertController,animated: true, completion: nil);
+        self.present(alertController,animated: true, completion: nil);*/
+    }
+    
+    private func makeMoyaCall (){
+        let provider = MoyaProvider<weMakeSitesService>()
+        provider.request(.getMoviesForActor(actor: "Robert")) { result in
+            switch result {
+            case let .success(moyaResponse) :
+                let string = String(data: moyaResponse.data, encoding: String.Encoding.utf8)
+                print(string ?? "Nahhh")
+                
+                
+            default :
+                break
+                
+            }
+            
+        }
+
     }
     
 
