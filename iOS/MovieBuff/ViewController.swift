@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import Moya
+
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after loading the view, typically from a nib
+        let provider = MoyaProvider<weMakeSitesService>()
+        provider.request(.getMoviesForActor(actor: "Robert")) { result in
+            switch result {
+            case let .success(moyaResponse) :
+                print(moyaResponse)
+                
+            default :
+                break
+                
+            }
+            
+        }
     }
 
     override func didReceiveMemoryWarning() {
