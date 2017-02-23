@@ -41,9 +41,12 @@ class HomeViewController: UIViewController {
         
         //let alertController = UIAlertController(title: "Movies", message: "Movies Coming Soon", preferredStyle:.alert)
         //self.present(alertController,animated: true, completion: nil);
-        let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
+        
+        /*let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
         let viewController : UIViewController = storyBoard.instantiateInitialViewController()! as UIViewController
-        self.present(viewController, animated: true, completion: nil)
+        //viewController
+        self.present(viewController, animated: true, completion: nil)*/
+        makeMoyaCall()
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
@@ -56,22 +59,20 @@ class HomeViewController: UIViewController {
     }
     
     private func makeMoyaCall (){
-        let provider = MoyaProvider<weMakeSitesService>()
-        provider.request(.getMoviesForActor(actor: "Robert")) { result in
-            switch result {
-            case let .success(moyaResponse) :
-                let string = String(data: moyaResponse.data, encoding: String.Encoding.utf8)
-                print(string ?? "Nahhh")
-                
-                
-            default :
-                break
-                
-            }
-            
+        let dataProvider = MovieDataprovider(movieService: weMakeSitesService())
+        
+        func searchResultsCallback (dataObjects : [[BaseFilmModel]],error:NSError?){
+            print(dataObjects)
+            showResults(data: dataObjects)
         }
-
+        dataProvider.getSearchResults(searchString: "Tom Cruise", completion: searchResultsCallback)
     }
     
-
+    private func showResults(data:[[BaseFilmModel]]) {
+        let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
+        let viewController : MovieSearchViewController = storyBoard.instantiateInitialViewController()! as! MovieSearchViewController
+        viewController.searchViewModel = SearchViewModel(filmModel: data)
+        
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
