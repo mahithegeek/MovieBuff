@@ -9,17 +9,35 @@
 import Foundation
 import Moya
 
-enum weMakeSitesService {
+class weMakeSitesService : MovieServiceProtocol {
+    func getSearchResults(searchString: String, completion: @escaping ((Data,NSError?) -> Void)) {
+        let serviceProvider = MoyaProvider<weMakeSitesIMDBService>()
+        serviceProvider.request(.getMoviesForActor(actor: "Tom Cruise")) { result in
+            switch result {
+            case let .success(moyaResponse) :
+                completion(moyaResponse.data,nil)
+            default :
+                break
+                
+            }
+            
+        }
+    }
+}
+
+
+private enum APIKEY {
+    static let wemakeSitesKey = "8d37d5a0-e106-4d66-b78b-83bf3fa4fbef"
+}
+private enum weMakeSitesIMDBService {
     case getMoviesForActor(actor:String)
 }
 
-extension weMakeSitesService : TargetType {
+extension weMakeSitesIMDBService : TargetType {
     var baseURL : URL {return URL(string:"http://imdb.wemakesites.net/api")!}
     var path : String {
         switch self {
         case .getMoviesForActor( _):
-            //let queryString = "q=\(actor)&api_key=8d37d5a0-e106-4d66-b78b-83bf3fa4fbef"
-            //let queryString = "nm0000115"
             let queryString = "search"
             return queryString
         }
@@ -35,8 +53,8 @@ extension weMakeSitesService : TargetType {
     
     var parameters: [String: Any]? {
         switch self {
-        case .getMoviesForActor:
-            return ["q":"Robert","api_key":"8d37d5a0-e106-4d66-b78b-83bf3fa4fbef"]
+        case .getMoviesForActor(let actor):
+            return ["q":actor,"api_key":APIKEY.wemakeSitesKey]
         }
     }
     
