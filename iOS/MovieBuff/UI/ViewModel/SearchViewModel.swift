@@ -52,4 +52,14 @@ class SearchViewModel {
         return result
     }
     
+    func modelForCell (section:Int,row:Int) -> Actor {
+        if(section == 0){
+            return self.actorsArray![row]
+        }
+        
+        return self.titleArray![row]
+        
+        
+    
+    }
 }

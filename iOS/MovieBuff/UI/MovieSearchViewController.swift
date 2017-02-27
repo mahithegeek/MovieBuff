@@ -39,6 +39,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,10 +67,15 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "test")
-        return UITableViewCell()
+            return cellForIndex(indexPath: indexPath)
     }
     
+    private func cellForIndex (indexPath:IndexPath)->UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchController", for: indexPath)
+        let filmObject : Actor = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row)
+        cell.textLabel?.text = filmObject.title
+        return cell
+    }
     
 
 }
