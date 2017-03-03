@@ -7,37 +7,15 @@
 //
 
 import UIKit
-enum SearchSection : Int {
-    case Count,Actors,Titles
-    
-    static var count = {
-        return SearchSection.Count.rawValue
-    }
-    
-    static let sectionTitles = [
-        Actors : "Actors",
-        Titles : "Titles"
-    ]
-    
-    func sectionTitle()->String {
-        if let sectionTitle = SearchSection.sectionTitles[self] {
-            return sectionTitle
-        } else{
-            return ""
-        }
-    }
-    
-}
-
-class MovieSearchViewController: UIViewController,UITableViewDataSource {
+class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet var tableView : UITableView!
     
     var searchViewModel : SearchViewModel!
+    var loadingIndicator : UIActivityIndicatorView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         //self.tableView.reloadData()
     }
@@ -62,6 +40,10 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource {
         return searchViewModel.numberOfSections()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return searchViewModel.sectionTitle(sectionNumber: section)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchViewModel.numberOfRowsForModel(sectionNumber: section)
     }
@@ -71,11 +53,53 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource {
     }
     
     private func cellForIndex (indexPath:IndexPath)->UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchController", for: indexPath)
-        let filmObject : Actor = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row)
+        guard let filmObject : Actor = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
         cell.textLabel?.text = filmObject.title
         return cell
     }
     
+    
+    //Mark - Search Methods
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        //NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(getSearchResultsForString(searchString:)), object: searchText)
+        //self.perform(#selector(self.getSearchResultsForString(searchString:)),with:searchText,afterDelay:0.5)
+        //Do nothing right now
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        self.showLoadingIndicator()
+        //getSearchResultsForString(searchString: searchBar.text!)
+    }
+    
+    private func showLoadingIndicator(){
+        self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        self.loadingIndicator?.center = self.tableView.center
+        self.tableView.addSubview(self.loadingIndicator!)
+        self.loadingIndicator!.startAnimating()
+        
+    }
+    
+    private func stopLoadingIndicator(){
+        self.loadingIndicator!.stopAnimating()
+    }
+    
+     private func getSearchResultsForString(searchString : String){
+        let dataProvider = MovieDataprovider(provider: providerType.weMakeSites)
+        func searchResultsCallback (dataObjects : [[BaseFilmModel]]??,error:NSError?){
+            guard dataObjects != nil else {print(error ?? "test")
+                let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
+                present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            self.searchViewModel.updateModel(filmModel: dataObjects!!)
+            self.stopLoadingIndicator()
+            self.tableView.reloadData()
+        }
+        dataProvider.getSearchResults(searchString: searchString, completion: searchResultsCallback)
+    }
 
 }
