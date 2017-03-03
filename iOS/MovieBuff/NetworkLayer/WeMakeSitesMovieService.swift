@@ -12,7 +12,7 @@ import Moya
 class weMakeSitesService : MovieServiceProtocol {
     func getSearchResults(searchString: String, completion: @escaping (([[BaseFilmModel]]?,NSError?) -> Void)) {
         let serviceProvider = MoyaProvider<weMakeSitesIMDBService>()
-        serviceProvider.request(.getMoviesForActor(actor: "Tom Cruise")) { result in
+        serviceProvider.request(.getMoviesForActor(actor: searchString)) { result in
             switch result {
             case let .success(moyaResponse) :
                 let string1 = String(data: moyaResponse.data, encoding: .utf8)

@@ -15,13 +15,16 @@ enum ModelType {
 
 class SearchViewModel {
     
-    private let filmModel : [[BaseFilmModel]]
+    private var filmModel : [[BaseFilmModel]]??
     private var actorsArray : [Actor]?
     private var titleArray : [Title]?
     
-    init(filmModel : [[BaseFilmModel]]){
-        self.filmModel = filmModel
-        stripModel(model:filmModel)
+    init(filmModel : [[BaseFilmModel]]??){
+        if filmModel != nil{
+            self.filmModel = filmModel
+            stripModel(model:filmModel!!)
+        }
+        
     }
     
     //To-DO do a better and clean iteration in the array
@@ -35,14 +38,28 @@ class SearchViewModel {
         return 2;
     }
     
+    func sectionTitle(sectionNumber : Int) -> String{
+        var result = ""
+        switch sectionNumber {
+            case 0:
+                result =  "Actors"
+            case 1:
+                result =  "Movies"
+            default:
+                result = ""
+        }
+        
+        return result
+    }
+    
     func numberOfRowsForModel(sectionNumber : Int) -> Int {
         var result = 1
         
         switch sectionNumber {
         case 0:
-            result = (self.actorsArray?.count)!
+            result = (self.actorsArray != nil) ? (self.actorsArray?.count)! : 1
         case 1:
-            result = (self.titleArray?.count)!
+            result = (self.titleArray != nil) ? (self.titleArray?.count)! : 1
         default:
             return 1
             
@@ -52,7 +69,11 @@ class SearchViewModel {
         return result
     }
     
-    func modelForCell (section:Int,row:Int) -> Actor {
+    func modelForCell (section:Int,row:Int) -> Actor? {
+        
+        if(self.actorsArray == nil){
+            return nil
+        }
         if(section == 0){
             return self.actorsArray![row]
         }
@@ -61,5 +82,10 @@ class SearchViewModel {
         
         
     
+    }
+    
+    func updateModel(filmModel:[[BaseFilmModel]]){
+        self.filmModel = filmModel
+        self.stripModel(model: filmModel)
     }
 }

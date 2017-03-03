@@ -50,12 +50,20 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
-        makeMoyaCall()
+        //makeMoyaCall()
         /*
         let alertController = UIAlertController(title: "TV", message: "Movies Coming Soon", preferredStyle:.alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController,animated: true, completion: nil);*/
+        
+        let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
+        let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
+        let destinationController = tabController.viewControllers?[1] as! UINavigationController
+        let movieSearchViewController = destinationController.topViewController as! MovieSearchViewController
+        movieSearchViewController.searchViewModel = SearchViewModel(filmModel: nil)
+        tabController.selectedIndex = 1
+        self.present(tabController, animated: true, completion: nil)
     }
     
     private func makeMoyaCall (){
@@ -76,8 +84,9 @@ class HomeViewController: UIViewController {
     private func showResults(data:[[BaseFilmModel]]??) {
         let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
         let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
-        let destinationController = tabController.viewControllers?[1] as! MovieSearchViewController
-        destinationController.searchViewModel = SearchViewModel(filmModel: data!!)
+        let destinationController = tabController.viewControllers?[1] as! UINavigationController
+        let movieSearchViewController = destinationController.topViewController as! MovieSearchViewController
+        movieSearchViewController.searchViewModel = SearchViewModel(filmModel: data!!)
         tabController.selectedIndex = 1
         self.present(tabController, animated: true, completion: nil)
     }
