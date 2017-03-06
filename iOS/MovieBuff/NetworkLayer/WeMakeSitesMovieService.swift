@@ -5,7 +5,7 @@
 //  Created by Mahendra on 16/02/17.
 //  Copyright © 2017 Mahendra. All rights reserved.
 //
-
+//API key - TMDB a616b8ad0381bcd02d5d62f5ab353603
 import Foundation
 import Moya
 

@@ -71,7 +71,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         self.showLoadingIndicator()
-        //getSearchResultsForString(searchString: searchBar.text!)
+        getSearchResultsForString(searchString: searchBar.text!)
     }
     
     private func showLoadingIndicator(){
@@ -100,6 +100,13 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
             self.tableView.reloadData()
         }
         dataProvider.getSearchResults(searchString: searchString, completion: searchResultsCallback)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
+        let index = self.tableView.indexPathForSelectedRow!
+        destination.movieDetailsViewModel = MovieDetailsViewModel(title:self.searchViewModel.getSelectedRowObject(row: index.row))
+        
     }
 
 }
