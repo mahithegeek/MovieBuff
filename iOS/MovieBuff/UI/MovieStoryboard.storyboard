@@ -37,15 +37,18 @@
                                         <rect key="frame" x="0.0" y="28" width="382" height="9"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UV5-0P-L1j" id="3W9-cl-AGu">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="8"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="9"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Nd7-bP-5o1" kind="show" id="U7y-jv-qa3"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qS2-7z-nt7">
                                         <rect key="frame" x="0.0" y="37" width="382" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qS2-7z-nt7" id="EeI-z0-F29">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -66,6 +69,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmM-xk-gpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="639.20000000000005" y="-67.016491754122939"/>
+        </scene>
+        <!--Movie Details View Controller-->
+        <scene sceneID="wHo-ti-V3s">
+            <objects>
+                <viewController id="Nd7-bP-5o1" customClass="MovieDetailsViewController" customModule="MovieBuff" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Cnh-Xf-wVI"/>
+                        <viewControllerLayoutGuide type="bottom" id="7sF-S5-kmu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eT6-FZ-Ihj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="my3-o9-Icx">
+                                <rect key="frame" x="67" y="114" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="my3-o9-Icx" id="hoc-Q8-ICA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZjN-le-rLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1463" y="-67"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="vUc-Oy-es9">

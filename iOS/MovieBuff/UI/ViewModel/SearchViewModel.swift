@@ -88,4 +88,8 @@ class SearchViewModel {
         self.filmModel = filmModel
         self.stripModel(model: filmModel)
     }
+    
+    func getSelectedRowObject(row:Int)->Title {
+        return self.titleArray![row]
+    }
 }
