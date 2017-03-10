@@ -10,6 +10,10 @@ import Foundation
 import Moya
 
 class weMakeSitesService : MovieServiceProtocol {
+    internal func searchMovies(searchString: String, completion: @escaping ([Movie]?, NSError?) -> Void) {
+        //
+    }
+
     func getSearchResults(searchString: String, completion: @escaping (([[BaseFilmModel]]?,NSError?) -> Void)) {
         let serviceProvider = MoyaProvider<weMakeSitesIMDBService>()
         serviceProvider.request(.getMoviesForActor(actor: searchString)) { result in

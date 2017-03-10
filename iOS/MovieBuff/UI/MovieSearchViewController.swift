@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SwiftSpinner
 class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet var tableView : UITableView!
     
-    var searchViewModel : SearchViewModel!
+    var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
 
     override func viewDidLoad() {
@@ -55,8 +56,8 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     private func cellForIndex (indexPath:IndexPath)->UITableViewCell{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchController", for: indexPath)
-        guard let filmObject : Actor = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
-        cell.textLabel?.text = filmObject.title
+        guard let movie : Movie = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
+        cell.textLabel?.text = movie.getTitle
         return cell
     }
     
@@ -70,24 +71,16 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        self.showLoadingIndicator()
-        getSearchResultsForString(searchString: searchBar.text!)
+        SwiftSpinner.show("Fetching your fucking Search....")
+        //getSearchResultsForString(searchString: searchBar.text!)
+        searchMovies(searchString: searchBar.text!)
     }
     
-    private func showLoadingIndicator(){
-        self.loadingIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        self.loadingIndicator?.center = self.tableView.center
-        self.tableView.addSubview(self.loadingIndicator!)
-        self.loadingIndicator!.startAnimating()
-        
-    }
     
-    private func stopLoadingIndicator(){
-        self.loadingIndicator!.stopAnimating()
-    }
     
-     private func getSearchResultsForString(searchString : String){
-        let dataProvider = MovieDataprovider(provider: providerType.weMakeSites)
+    
+    /* private func getSearchResultsForString(searchString : String){
+        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
         func searchResultsCallback (dataObjects : [[BaseFilmModel]]??,error:NSError?){
             guard dataObjects != nil else {print(error ?? "test")
                 let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
@@ -100,12 +93,33 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
             self.tableView.reloadData()
         }
         dataProvider.getSearchResults(searchString: searchString, completion: searchResultsCallback)
+    }*/
+    
+    private func searchMovies (searchString : String) {
+        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
+        
+        func searchResultsCallback(movies : [Movie]?,error:NSError?) {
+            SwiftSpinner.hide()
+            guard let movies = movies else {
+                print(error ?? "Something wrong while fetching moves")
+                let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
+                present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            self.searchViewModel.updateModel(movies: movies)
+            
+            self.tableView.reloadData()
+        }
+        
+        dataProvider.searchMovies(searchString: searchString, completion: searchResultsCallback)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
         let index = self.tableView.indexPathForSelectedRow!
-        destination.movieDetailsViewModel = MovieDetailsViewModel(title:self.searchViewModel.getSelectedRowObject(row: index.row))
+        //destination.movieDetailsViewModel = MovieDetailsViewModel(title:self.searchViewModel.getSelectedRowObject(row: index.row))
+        destination.movieDetailsViewModel = MovieDetailsViewModel(title: self.searchViewModel.getSelectedRowObject(row: index.row))
         
     }
 

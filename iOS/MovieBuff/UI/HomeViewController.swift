@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         let viewController : UIViewController = storyBoard.instantiateInitialViewController()! as UIViewController
         //viewController
         self.present(viewController, animated: true, completion: nil)*/
-        makeMoyaCall()
+        //makeMoyaCall()
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
@@ -61,12 +61,13 @@ class HomeViewController: UIViewController {
         let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
         let destinationController = tabController.viewControllers?[1] as! UINavigationController
         let movieSearchViewController = destinationController.topViewController as! MovieSearchViewController
-        movieSearchViewController.searchViewModel = SearchViewModel(filmModel: nil)
+        movieSearchViewController.searchViewModel = MovieSearchViewModel(movies: [Movie]())
         tabController.selectedIndex = 1
         self.present(tabController, animated: true, completion: nil)
     }
     
-    private func makeMoyaCall (){
+   
+    /*private func makeMoyaCall (){
         let dataProvider = MovieDataprovider(provider: providerType.weMakeSites)
         func searchResultsCallback (dataObjects : [[BaseFilmModel]]??,error:NSError?){
             guard dataObjects != nil else {print(error ?? "test")
@@ -89,7 +90,7 @@ class HomeViewController: UIViewController {
         movieSearchViewController.searchViewModel = SearchViewModel(filmModel: data!!)
         tabController.selectedIndex = 1
         self.present(tabController, animated: true, completion: nil)
-    }
+    }*/
     
     
 }
