@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import SwiftSpinner
 
 class MovieDetailsViewController: UIViewController {
     var movieDetailsViewModel : MovieDetailsViewModel!
     @IBOutlet weak var imageView : UIImageView!
-    
+    @IBOutlet weak var movieName : UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        updateImage()
+        fillUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,11 +35,20 @@ class MovieDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    func fillUI(){
+        SwiftSpinner.show("Setting Up Movie Details baby .....")
+        self.movieName.text = self.movieDetailsViewModel.getMovieTitle()
+        updateImage()
+    }
     
     func updateImage(){
         
-        func onImageRetrieved(image:UIImage){
+        func onImageRetrieved(image:UIImage?){
             DispatchQueue.main.async {
+                SwiftSpinner.hide()
+                guard let image = image else{
+                    return
+                }
                 self.imageView.image = image
             }
             

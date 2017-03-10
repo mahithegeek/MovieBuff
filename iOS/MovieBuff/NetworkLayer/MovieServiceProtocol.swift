@@ -10,4 +10,5 @@ import Foundation
 
 protocol MovieServiceProtocol {
     func getSearchResults (searchString:String,completion: @escaping (([[BaseFilmModel]]?,NSError?)->Void))
+    func searchMovies (searchString:String, completion: @escaping ([Movie]?,NSError?)->Void)
 }

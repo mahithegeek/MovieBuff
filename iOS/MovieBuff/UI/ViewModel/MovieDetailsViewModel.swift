@@ -9,18 +9,27 @@
 import Foundation
 import UIKit
 class MovieDetailsViewModel {
-    private var title:Title
+    private var movie:Movie
     
-    init(title : Title){
-        self.title = title
+    init(title : Movie){
+        self.movie = title
     }
     
-    func getPosterImage(completion : @escaping (UIImage)->Void) {
+    func getPosterImage(completion : @escaping (UIImage?)->Void) {
         DispatchQueue.global().async {
-            let url = NSURL(string: self.title.getThumbNailUrl)
+            guard let posterPath: String  = self.movie.getPosterPath else{
+                completion(nil)
+                return
+            }
+            let urlString = "https://image.tmdb.org/t/p/original" + posterPath
+            let url = NSURL(string: urlString)
             let data = try? Data(contentsOf: url as! URL)
             let image = UIImage(data: data!)
             completion(image!)
         }
+    }
+    
+    func getMovieTitle()->String?{
+        return self.movie.getTitle
     }
 }
