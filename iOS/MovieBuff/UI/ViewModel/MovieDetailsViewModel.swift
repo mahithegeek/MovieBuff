@@ -17,7 +17,7 @@ class MovieDetailsViewModel {
     
     func getPosterImage(completion : @escaping (UIImage?)->Void) {
         DispatchQueue.global().async {
-            guard let posterPath: String  = self.movie.getPosterPath else{
+            guard let posterPath: String  = self.movie.posterPath else{
                 completion(nil)
                 return
             }
@@ -30,6 +30,6 @@ class MovieDetailsViewModel {
     }
     
     func getMovieTitle()->String?{
-        return self.movie.getTitle
+        return "hi"
     }
 }

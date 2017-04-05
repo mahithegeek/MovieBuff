@@ -17,11 +17,11 @@ class TMDBService : MovieServiceProtocol {
             case let .success(moyaResponse) :
                 let string1 = String(data: moyaResponse.data, encoding: .utf8)
                 print(string1 ?? "test")
+                
                 let movies = self.handleMovieSearchResponse(jsonData: moyaResponse.data)
                 if(movies != nil){
                     completion(movies,nil)
                 }
-                //completion(movies,
                 
             default :
                 break

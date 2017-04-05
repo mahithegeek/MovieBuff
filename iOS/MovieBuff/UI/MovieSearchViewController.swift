@@ -57,7 +57,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchController", for: indexPath)
         guard let movie : Movie = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
-        cell.textLabel?.text = movie.getTitle
+        cell.textLabel?.text = movie.value(forKey: "title") as! String?//movie.title
         return cell
     }
     
@@ -118,7 +118,6 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
         let index = self.tableView.indexPathForSelectedRow!
-        //destination.movieDetailsViewModel = MovieDetailsViewModel(title:self.searchViewModel.getSelectedRowObject(row: index.row))
         destination.movieDetailsViewModel = MovieDetailsViewModel(title: self.searchViewModel.getSelectedRowObject(row: index.row))
         
     }
