@@ -40,6 +40,10 @@ class DataController : NSObject {
         }
     }
     
+    func getContext()->NSManagedObjectContext {
+        return self.managedObjectContext
+    }
+    
    /* func addToWatchList(movie : Movie)->Bool {
         
     }*/
@@ -61,17 +65,10 @@ class DataController : NSObject {
     //MARK - Model methods
     func createMovieObjectWithJSON(json:[String : Any])->Movie {
         print(self.managedObjectContext)
-        let movie  = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: self.managedObjectContext) as! Movie
         
-         movie.setValue(json["title"], forKey: "title")
-         movie.id = (json["id"] as? String)
-         movie.overView = json["overview"] as? String
-         movie.posterPath = json["poster_path"] as? String
+        let movie = Movie(json: json, context: self.managedObjectContext)
+        
          return movie
-    }
-    
-    deinit {
-        print("Data controller dealloced")
     }
     
 }

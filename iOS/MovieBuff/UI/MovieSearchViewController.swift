@@ -57,7 +57,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchController", for: indexPath)
         guard let movie : Movie = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
-        cell.textLabel?.text = movie.value(forKey: "title") as! String?//movie.title
+        cell.textLabel?.text = movie.getTitleString()
         return cell
     }
     
