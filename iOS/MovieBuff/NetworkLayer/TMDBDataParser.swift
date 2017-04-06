@@ -13,6 +13,12 @@ enum TMDBParserError : Error {
 }
 
 class TMDBDataParser {
+    let dataController : DataController
+    
+    init(){
+        dataController = DataController.sharedInstance
+    }
+    
     func buildMovieModelFromJSON(jsonData : Data) throws ->[Movie]{
         let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String:Any]
         
@@ -24,9 +30,14 @@ class TMDBDataParser {
         print(results)
         var movieArray =  [Movie]()
         for object in results{
-            let temp = Movie(json: object)
-            movieArray.append(temp!)
+            let temp:Movie =  createMovieObjectsWithJSON(json: object)
+            movieArray.append(temp)
         }
         return movieArray
+    }
+    
+    func createMovieObjectsWithJSON (json:[String:Any])->Movie{
+        return Movie(json: json, context: self.dataController.getContext())
+        
     }
 }

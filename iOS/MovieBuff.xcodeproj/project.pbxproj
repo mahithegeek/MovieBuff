@@ -20,12 +20,14 @@
 		801A666D1E38A3CA00F52526 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 801A666B1E38A3CA00F52526 /* HomeViewController.xib */; };
 		802B2F4D1E727B40002C466C /* MovieSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802B2F4C1E727B40002C466C /* MovieSearchViewModel.swift */; };
 		80325BF91E71610E00DE9A1C /* TMDBDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80325BF81E71610E00DE9A1C /* TMDBDataParser.swift */; };
-		80325BFB1E71734C00DE9A1C /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80325BFA1E71734C00DE9A1C /* Movie.swift */; };
 		804A659A1E5C6404003D5111 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804A65991E5C6404003D5111 /* Actor.swift */; };
 		804A659C1E5C6467003D5111 /* BaseFilmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804A659B1E5C6467003D5111 /* BaseFilmModel.swift */; };
 		804AA4321E3B78F400183AAC /* MovieStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 804AA4311E3B78F400183AAC /* MovieStoryboard.storyboard */; };
 		80506F041E5D6AE7007D5C4B /* MovieDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80506F031E5D6AE7007D5C4B /* MovieDataProvider.swift */; };
 		80506F061E5D6C27007D5C4B /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80506F051E5D6C27007D5C4B /* MovieServiceProtocol.swift */; };
+		807F2FCB1E93A5240060AF65 /* MovieBuff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 807F2FC91E93A5240060AF65 /* MovieBuff.xcdatamodeld */; };
+		807F2FCD1E93A59C0060AF65 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F2FCC1E93A59C0060AF65 /* Movie.swift */; };
+		809658ED1E88F0EB00FA5AF9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809658EC1E88F0EB00FA5AF9 /* DataController.swift */; };
 		809C5C921E5EB1A00057EA7B /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C911E5EB1A00057EA7B /* Title.swift */; };
 		809C5C951E5EB5DB0057EA7B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C941E5EB5DB0057EA7B /* SearchViewModel.swift */; };
 		809C5C9A1E5EBDAE0057EA7B /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C981E5EBDAE0057EA7B /* MovieSearchViewController.swift */; };
@@ -74,12 +76,14 @@
 		801A666B1E38A3CA00F52526 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeViewController.xib; path = UI/HomeViewController.xib; sourceTree = "<group>"; };
 		802B2F4C1E727B40002C466C /* MovieSearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieSearchViewModel.swift; path = UI/ViewModel/MovieSearchViewModel.swift; sourceTree = "<group>"; };
 		80325BF81E71610E00DE9A1C /* TMDBDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TMDBDataParser.swift; path = NetworkLayer/TMDBDataParser.swift; sourceTree = "<group>"; };
-		80325BFA1E71734C00DE9A1C /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = Models/Movie.swift; sourceTree = "<group>"; };
 		804A65991E5C6404003D5111 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Actor.swift; path = Models/Actor.swift; sourceTree = "<group>"; };
 		804A659B1E5C6467003D5111 /* BaseFilmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseFilmModel.swift; path = Models/BaseFilmModel.swift; sourceTree = "<group>"; };
 		804AA4311E3B78F400183AAC /* MovieStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MovieStoryboard.storyboard; path = UI/MovieStoryboard.storyboard; sourceTree = "<group>"; };
 		80506F031E5D6AE7007D5C4B /* MovieDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieDataProvider.swift; path = DataProviders/MovieDataProvider.swift; sourceTree = "<group>"; };
 		80506F051E5D6C27007D5C4B /* MovieServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieServiceProtocol.swift; path = NetworkLayer/MovieServiceProtocol.swift; sourceTree = "<group>"; };
+		807F2FCA1E93A5240060AF65 /* MovieBuff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieBuff.xcdatamodel; sourceTree = "<group>"; };
+		807F2FCC1E93A59C0060AF65 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = Persistence/Movie.swift; sourceTree = "<group>"; };
+		809658EC1E88F0EB00FA5AF9 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = Persistence/DataController.swift; sourceTree = "<group>"; };
 		809C5C911E5EB1A00057EA7B /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = Models/Title.swift; sourceTree = "<group>"; };
 		809C5C941E5EB5DB0057EA7B /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = UI/ViewModel/SearchViewModel.swift; sourceTree = "<group>"; };
 		809C5C981E5EBDAE0057EA7B /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieSearchViewController.swift; path = UI/MovieSearchViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +137,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8008E86B1E7807F200163CF6 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				809658EC1E88F0EB00FA5AF9 /* DataController.swift */,
+				807F2FC91E93A5240060AF65 /* MovieBuff.xcdatamodeld */,
+				807F2FCC1E93A59C0060AF65 /* Movie.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 		801A662F1E38A1AD00F52526 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +172,7 @@
 		801A663A1E38A1AD00F52526 /* MovieBuff */ = {
 			isa = PBXGroup;
 			children = (
+				8008E86B1E7807F200163CF6 /* Persistence */,
 				80506F021E5D6AD0007D5C4B /* DataProviders */,
 				804A65981E5C6243003D5111 /* Models */,
 				80F136C51E55CB3A003DEA2F /* NetworkLayer */,
@@ -216,7 +231,6 @@
 				804A65991E5C6404003D5111 /* Actor.swift */,
 				804A659B1E5C6467003D5111 /* BaseFilmModel.swift */,
 				809C5C911E5EB1A00057EA7B /* Title.swift */,
-				80325BFA1E71734C00DE9A1C /* Movie.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -548,15 +562,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807F2FCD1E93A59C0060AF65 /* Movie.swift in Sources */,
 				80506F061E5D6C27007D5C4B /* MovieServiceProtocol.swift in Sources */,
 				809C5C921E5EB1A00057EA7B /* Title.swift in Sources */,
 				804A659C1E5C6467003D5111 /* BaseFilmModel.swift in Sources */,
 				809C5C9A1E5EBDAE0057EA7B /* MovieSearchViewController.swift in Sources */,
+				809658ED1E88F0EB00FA5AF9 /* DataController.swift in Sources */,
 				80F136C91E55CDA8003DEA2F /* WeMakeSitesMovieService.swift in Sources */,
 				801A663C1E38A1AD00F52526 /* AppDelegate.swift in Sources */,
-				80325BFB1E71734C00DE9A1C /* Movie.swift in Sources */,
 				80F136C71E55CBCA003DEA2F /* NetworkService.swift in Sources */,
 				809C5C951E5EB5DB0057EA7B /* SearchViewModel.swift in Sources */,
+				807F2FCB1E93A5240060AF65 /* MovieBuff.xcdatamodeld in Sources */,
 				80FE916C1E6965500041223F /* MovieDetailsViewModel.swift in Sources */,
 				80325BF91E71610E00DE9A1C /* TMDBDataParser.swift in Sources */,
 				80FE916A1E69519B0041223F /* MovieDetailsViewController.swift in Sources */,
@@ -851,6 +867,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		807F2FC91E93A5240060AF65 /* MovieBuff.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				807F2FCA1E93A5240060AF65 /* MovieBuff.xcdatamodel */,
+			);
+			currentVersion = 807F2FCA1E93A5240060AF65 /* MovieBuff.xcdatamodel */;
+			name = MovieBuff.xcdatamodeld;
+			path = Persistence/MovieBuff.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 801A66301E38A1AD00F52526 /* Project object */;
 }

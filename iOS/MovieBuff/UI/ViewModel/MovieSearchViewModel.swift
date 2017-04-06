@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import CoreData
 
-class MovieSearchViewModel {
-    private var movies : [Movie]
+class MovieSearchViewModel : NSObject {
+    private var movies : [NSManagedObject]
     
     init(movies:[Movie]){
         self.movies = movies
@@ -55,15 +56,16 @@ class MovieSearchViewModel {
         if(self.movies.count == 0){
             return nil
         }
-        
-        return self.movies[row]
+        return self.movies[row] as? Movie
     }
+    
     
     func updateModel(movies:[Movie]){
         self.movies = movies
+        print("count after \(self.movies.count)")
     }
     
     func getSelectedRowObject(row:Int)->Movie {
-        return self.movies[row]
+        return (self.movies[row] as? Movie)!
     }
 }
