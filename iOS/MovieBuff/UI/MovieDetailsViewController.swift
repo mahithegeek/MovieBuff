@@ -13,6 +13,7 @@ class MovieDetailsViewController: UIViewController {
     var movieDetailsViewModel : MovieDetailsViewModel!
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var movieName : UILabel!
+    @IBOutlet weak var saveMovieButton : UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,6 +55,25 @@ class MovieDetailsViewController: UIViewController {
             
         }
         self.movieDetailsViewModel.getPosterImage(completion: onImageRetrieved)
+    }
+    
+    @IBAction func onSaveMovieClicked(sender:UIButton){
+    
+        var title : String,message : String
+        if(self.movieDetailsViewModel.saveMovie()){
+            print("saving movie succeeded")
+            title = "Success"
+            message = "Successfully added Movie to WatchList"
+        }
+        else{
+            title = "Oops!!! Error"
+            message = "Unable to add movie"
+        }
+        
+        let alertCOntroller = UIUtilities.createAlert(title: title, message: message)
+        let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+        alertCOntroller.addAction(cancelAction)
+        self.present(alertCOntroller, animated: true, completion: nil)
     }
 
 }

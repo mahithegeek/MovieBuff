@@ -32,4 +32,8 @@ class MovieDetailsViewModel {
     func getMovieTitle()->String?{
         return self.movie.getTitleString()
     }
+    
+    func saveMovie()->Bool{
+       return DataController.sharedInstance.addMovieToWatchList(movie: self.movie)
+    }
 }
