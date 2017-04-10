@@ -16,10 +16,8 @@ class Movie : NSManagedObject{
     
     convenience init(json:[String:Any],context:NSManagedObjectContext) {
         let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context)
-        self.init(entity: entity!, insertInto: context)
-        constructWIthJSON(json: json)
-        
-        
+        self.init(entity: entity!, insertInto: nil)
+        constructWithTMDBJSON(json: json)
     }
     
     func getposterPath()->String?{
@@ -30,7 +28,7 @@ class Movie : NSManagedObject{
         return self.value(forKey: "title") as? String
     }
     
-    private func constructWIthJSON(json:[String:Any]){
+    private func constructWithTMDBJSON(json:[String:Any]){
         //TODO can we do better??
         var title = json["title"]
         

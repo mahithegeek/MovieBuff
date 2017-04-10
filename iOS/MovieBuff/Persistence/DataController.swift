@@ -62,13 +62,25 @@ class DataController : NSObject {
         
     }
     
+    func getMovieWatchList()->[Movie] {
+        let moviesFetch = NSFetchRequest<NSManagedObject>(entityName: "Movie")
+        var fetchedEmployees : [Movie]
+        
+        do {
+            fetchedEmployees = try self.managedObjectContext.fetch(moviesFetch) as! [Movie]
+        } catch {
+            fatalError("Failed to fetch Movies: \(error)")
+        }
+        
+        return fetchedEmployees
+    }
+    
     //MARK - Model methods
     func createMovieObjectWithJSON(json:[String : Any])->Movie {
-        print(self.managedObjectContext)
-        
-        let movie = Movie(json: json, context: self.managedObjectContext)
-        
-         return movie
+        let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        childContext.parent = self.managedObjectContext
+        let movie = Movie(json: json, context: childContext)
+        return movie
     }
     
 }

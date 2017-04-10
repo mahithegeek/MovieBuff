@@ -39,23 +39,26 @@ class HomeViewController: UIViewController {
     
     @IBAction func moviesButtonClicked (sender:UIButton){
         
-        //let alertController = UIAlertController(title: "Movies", message: "Movies Coming Soon", preferredStyle:.alert)
-        //self.present(alertController,animated: true, completion: nil);
-        
-        /*let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
-        let viewController : UIViewController = storyBoard.instantiateInitialViewController()! as UIViewController
-        //viewController
-        self.present(viewController, animated: true, completion: nil)*/
-        //makeMoyaCall()
+        let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
+        let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
+        let destinationController = tabController.viewControllers?[1] as! UINavigationController
+        let movieSearchViewController = destinationController.topViewController as! MovieSearchViewController
+        movieSearchViewController.searchViewModel = MovieSearchViewModel(movies: [Movie]())
+        tabController.selectedIndex = 1
+        self.present(tabController, animated: true, completion: nil)
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
         //makeMoyaCall()
-        /*
-        let alertController = UIAlertController(title: "TV", message: "Movies Coming Soon", preferredStyle:.alert)
+        
+        let alertController = UIAlertController(title: "TV", message: "TV Coming Soon", preferredStyle:.alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
-        self.present(alertController,animated: true, completion: nil);*/
+        self.present(alertController,animated: true, completion: nil);
+    }
+    
+   
+    private func launchMovieSearch(destinationController:UINavigationController){
         
         let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
         let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
@@ -66,31 +69,8 @@ class HomeViewController: UIViewController {
         self.present(tabController, animated: true, completion: nil)
     }
     
-   
-    /*private func makeMoyaCall (){
-        let dataProvider = MovieDataprovider(provider: providerType.weMakeSites)
-        func searchResultsCallback (dataObjects : [[BaseFilmModel]]??,error:NSError?){
-            guard dataObjects != nil else {print(error ?? "test")
-                let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
-                present(alert, animated: true, completion: nil)
-                return
-            }
-            
-            showResults(data: dataObjects)
-            
-        }
-        dataProvider.getSearchResults(searchString: "Tom Cruise", completion: searchResultsCallback)
+    private func launchMovieWatchList(){
+        
     }
-    
-    private func showResults(data:[[BaseFilmModel]]??) {
-        let storyBoard = UIStoryboard(name: "MovieStoryboard", bundle: nil)
-        let tabController : UITabBarController = storyBoard.instantiateInitialViewController() as! UITabBarController
-        let destinationController = tabController.viewControllers?[1] as! UINavigationController
-        let movieSearchViewController = destinationController.topViewController as! MovieSearchViewController
-        movieSearchViewController.searchViewModel = SearchViewModel(filmModel: data!!)
-        tabController.selectedIndex = 1
-        self.present(tabController, animated: true, completion: nil)
-    }*/
-    
     
 }

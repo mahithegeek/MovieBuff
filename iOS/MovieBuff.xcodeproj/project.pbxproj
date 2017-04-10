@@ -27,10 +27,14 @@
 		80506F061E5D6C27007D5C4B /* MovieServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80506F051E5D6C27007D5C4B /* MovieServiceProtocol.swift */; };
 		807F2FCB1E93A5240060AF65 /* MovieBuff.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 807F2FC91E93A5240060AF65 /* MovieBuff.xcdatamodeld */; };
 		807F2FCD1E93A59C0060AF65 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807F2FCC1E93A59C0060AF65 /* Movie.swift */; };
+		8091DD3C1E9B82AD0027DC49 /* MovieWatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091DD3B1E9B82AD0027DC49 /* MovieWatchListViewController.swift */; };
+		8091DD3E1E9BA92E0027DC49 /* TableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091DD3D1E9BA92E0027DC49 /* TableViewModelProtocol.swift */; };
+		8091DD401E9BAA090027DC49 /* MovieWatchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8091DD3F1E9BAA090027DC49 /* MovieWatchListViewModel.swift */; };
 		809658ED1E88F0EB00FA5AF9 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809658EC1E88F0EB00FA5AF9 /* DataController.swift */; };
 		809C5C921E5EB1A00057EA7B /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C911E5EB1A00057EA7B /* Title.swift */; };
 		809C5C951E5EB5DB0057EA7B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C941E5EB5DB0057EA7B /* SearchViewModel.swift */; };
 		809C5C9A1E5EBDAE0057EA7B /* MovieSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809C5C981E5EBDAE0057EA7B /* MovieSearchViewController.swift */; };
+		80E009371E979B6800869801 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E009361E979B6800869801 /* UIUtilities.swift */; };
 		80E5BFDE1E6FDBEB0014D190 /* TMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E5BFDD1E6FDBEB0014D190 /* TMDBService.swift */; };
 		80F136C71E55CBCA003DEA2F /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F136C61E55CBCA003DEA2F /* NetworkService.swift */; };
 		80F136C91E55CDA8003DEA2F /* WeMakeSitesMovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F136C81E55CDA8003DEA2F /* WeMakeSitesMovieService.swift */; };
@@ -83,10 +87,14 @@
 		80506F051E5D6C27007D5C4B /* MovieServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieServiceProtocol.swift; path = NetworkLayer/MovieServiceProtocol.swift; sourceTree = "<group>"; };
 		807F2FCA1E93A5240060AF65 /* MovieBuff.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MovieBuff.xcdatamodel; sourceTree = "<group>"; };
 		807F2FCC1E93A59C0060AF65 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Movie.swift; path = Persistence/Movie.swift; sourceTree = "<group>"; };
+		8091DD3B1E9B82AD0027DC49 /* MovieWatchListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieWatchListViewController.swift; path = UI/MovieWatchListViewController.swift; sourceTree = "<group>"; };
+		8091DD3D1E9BA92E0027DC49 /* TableViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableViewModelProtocol.swift; path = UI/ViewModel/TableViewModelProtocol.swift; sourceTree = "<group>"; };
+		8091DD3F1E9BAA090027DC49 /* MovieWatchListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieWatchListViewModel.swift; path = UI/ViewModel/MovieWatchListViewModel.swift; sourceTree = "<group>"; };
 		809658EC1E88F0EB00FA5AF9 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DataController.swift; path = Persistence/DataController.swift; sourceTree = "<group>"; };
 		809C5C911E5EB1A00057EA7B /* Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Title.swift; path = Models/Title.swift; sourceTree = "<group>"; };
 		809C5C941E5EB5DB0057EA7B /* SearchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewModel.swift; path = UI/ViewModel/SearchViewModel.swift; sourceTree = "<group>"; };
 		809C5C981E5EBDAE0057EA7B /* MovieSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovieSearchViewController.swift; path = UI/MovieSearchViewController.swift; sourceTree = "<group>"; };
+		80E009361E979B6800869801 /* UIUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIUtilities.swift; path = UI/Utilities/UIUtilities.swift; sourceTree = "<group>"; };
 		80E5BFDD1E6FDBEB0014D190 /* TMDBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TMDBService.swift; path = NetworkLayer/TMDBService.swift; sourceTree = "<group>"; };
 		80F136C61E55CBCA003DEA2F /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkService.swift; path = NetworkLayer/NetworkService.swift; sourceTree = "<group>"; };
 		80F136C81E55CDA8003DEA2F /* WeMakeSitesMovieService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WeMakeSitesMovieService.swift; path = NetworkLayer/WeMakeSitesMovieService.swift; sourceTree = "<group>"; };
@@ -214,6 +222,7 @@
 				804AA4311E3B78F400183AAC /* MovieStoryboard.storyboard */,
 				809C5C981E5EBDAE0057EA7B /* MovieSearchViewController.swift */,
 				80FE91691E69519B0041223F /* MovieDetailsViewController.swift */,
+				8091DD3B1E9B82AD0027DC49 /* MovieWatchListViewController.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -221,6 +230,7 @@
 		802B2F4E1E72A964002C466C /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				80E009361E979B6800869801 /* UIUtilities.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -249,6 +259,8 @@
 				809C5C941E5EB5DB0057EA7B /* SearchViewModel.swift */,
 				80FE916B1E6965500041223F /* MovieDetailsViewModel.swift */,
 				802B2F4C1E727B40002C466C /* MovieSearchViewModel.swift */,
+				8091DD3D1E9BA92E0027DC49 /* TableViewModelProtocol.swift */,
+				8091DD3F1E9BAA090027DC49 /* MovieWatchListViewModel.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -571,11 +583,15 @@
 				80F136C91E55CDA8003DEA2F /* WeMakeSitesMovieService.swift in Sources */,
 				801A663C1E38A1AD00F52526 /* AppDelegate.swift in Sources */,
 				80F136C71E55CBCA003DEA2F /* NetworkService.swift in Sources */,
+				8091DD3E1E9BA92E0027DC49 /* TableViewModelProtocol.swift in Sources */,
+				8091DD3C1E9B82AD0027DC49 /* MovieWatchListViewController.swift in Sources */,
 				809C5C951E5EB5DB0057EA7B /* SearchViewModel.swift in Sources */,
 				807F2FCB1E93A5240060AF65 /* MovieBuff.xcdatamodeld in Sources */,
 				80FE916C1E6965500041223F /* MovieDetailsViewModel.swift in Sources */,
+				8091DD401E9BAA090027DC49 /* MovieWatchListViewModel.swift in Sources */,
 				80325BF91E71610E00DE9A1C /* TMDBDataParser.swift in Sources */,
 				80FE916A1E69519B0041223F /* MovieDetailsViewController.swift in Sources */,
+				80E009371E979B6800869801 /* UIUtilities.swift in Sources */,
 				801A666C1E38A3CA00F52526 /* HomeViewController.swift in Sources */,
 				804A659A1E5C6404003D5111 /* Actor.swift in Sources */,
 				80E5BFDE1E6FDBEB0014D190 /* TMDBService.swift in Sources */,
