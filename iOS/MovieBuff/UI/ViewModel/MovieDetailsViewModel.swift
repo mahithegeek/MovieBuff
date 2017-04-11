@@ -23,8 +23,11 @@ class MovieDetailsViewModel {
             }
             let urlString = "https://image.tmdb.org/t/p/original" + posterPath
             let url = NSURL(string: urlString)
-            let data = try? Data(contentsOf: url as! URL)
-            let image = UIImage(data: data!)
+            guard let data = try? Data(contentsOf: url as! URL) else{
+                completion(nil)
+                return
+            }
+            let image = UIImage(data: data)
             completion(image!)
         }
     }

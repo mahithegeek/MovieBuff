@@ -83,7 +83,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster_default" translatesAutoresizingMaskIntoConstraints="NO" id="my3-o9-Icx">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="poster_default" translatesAutoresizingMaskIntoConstraints="NO" id="my3-o9-Icx">
                                 <rect key="frame" x="16" y="72" width="182" height="247"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="182" id="qbq-g3-CMA"/>
@@ -100,10 +100,6 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ijg-su-wxl">
                                 <rect key="frame" x="123" y="522" width="129" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="129" id="71x-Et-Js4"/>
-                                    <constraint firstAttribute="height" constant="30" id="9xa-U8-Oxv"/>
-                                </constraints>
                                 <state key="normal" title="Add To Watch List"/>
                                 <connections>
                                     <action selector="onSaveMovieClickedWithSender:" destination="Nd7-bP-5o1" eventType="touchUpInside" id="t3B-db-5NX"/>
@@ -133,7 +129,7 @@
             </objects>
             <point key="canvasLocation" x="1461.5999999999999" y="-67.016491754122939"/>
         </scene>
-        <!--Movie Watch List View Controller-->
+        <!--Movies To Watch-->
         <scene sceneID="vUc-Oy-es9">
             <objects>
                 <viewController id="Rd8-Hh-BXo" customClass="MovieWatchListViewController" customModule="MovieBuff" customModuleProvider="target" sceneMemberID="viewController">
@@ -154,7 +150,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BnU-Rh-fh2" id="Fgc-TG-KaG">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -162,7 +158,7 @@
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b83-oJ-moQ" id="22j-au-U0h">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -175,7 +171,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Iv-ry-lcu"/>
+                    <navigationItem key="navigationItem" title="Movies To Watch" id="0Iv-ry-lcu"/>
                     <connections>
                         <outlet property="view" destination="VwB-7J-nJP" id="JcH-5P-whG"/>
                         <outlet property="watchList" destination="VwB-7J-nJP" id="FJ7-Ud-68L"/>
@@ -230,7 +226,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vGj-UB-zdp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Watch List" id="1iP-5R-l2x"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cTr-bG-JSJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTr-bG-JSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.029527505240000002" green="1" blue="0.88692009189999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
