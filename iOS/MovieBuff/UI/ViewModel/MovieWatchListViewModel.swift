@@ -14,6 +14,10 @@ class MovieWatchListViewModel : tableViewModel{
         self.movies = movies
     }
     
+    func refreshMovieWatchList(){
+        self.movies = DataController.sharedInstance.getMovieWatchList()
+    }
+    
     func getNumberOfSections() -> Int {
         return 1;
     }

@@ -11,20 +11,19 @@ import UIKit
 class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var watchList : UITableView!
-    var movieWatchList : [Movie] = []
-    
+    //var movieWatchList : [Movie] = []
+    var watchListViewModel : MovieWatchListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.movieWatchList = DataController.sharedInstance.getMovieWatchList()
+        self.watchListViewModel.refreshMovieWatchList()
         self.watchList.reloadData()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -32,18 +31,19 @@ class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITable
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieWatchList.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return self.watchListViewModel.getNumberOfRows();
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1;
+        return self.watchListViewModel.getNumberOfSections()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchList", for: indexPath)
-//        guard let movie : Movie = searchViewModel.modelForCell(section: indexPath.section, row: indexPath.row) else { return cell}
-        cell.textLabel?.text = self.movieWatchList[indexPath.row].getTitleString()
+
+        let movie = self.watchListViewModel.getModelForCell(indexPath: indexPath) as! Movie
+        cell.textLabel?.text = movie.getTitleString()
         return cell
     }
 

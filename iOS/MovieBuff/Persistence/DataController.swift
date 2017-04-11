@@ -25,7 +25,7 @@ class DataController : NSObject {
         self.managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         self.managedObjectContext.persistentStoreCoordinator = psc
         
-        DispatchQueue.global(qos: .background).async {
+        //DispatchQueue.global(qos: .background).async {
             let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
             
             let docURL = urls[urls.endIndex - 1]
@@ -37,7 +37,7 @@ class DataController : NSObject {
                 fatalError("Error migrating store : \(error)")
             }
             
-        }
+        //}
     }
     
     func getContext()->NSManagedObjectContext {
@@ -64,15 +64,15 @@ class DataController : NSObject {
     
     func getMovieWatchList()->[Movie] {
         let moviesFetch = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-        var fetchedEmployees : [Movie]
+        var fetchedMovies : [Movie]
         
         do {
-            fetchedEmployees = try self.managedObjectContext.fetch(moviesFetch) as! [Movie]
+            fetchedMovies = try self.managedObjectContext.fetch(moviesFetch) as! [Movie]
         } catch {
             fatalError("Failed to fetch Movies: \(error)")
         }
         
-        return fetchedEmployees
+        return fetchedMovies
     }
     
     //MARK - Model methods

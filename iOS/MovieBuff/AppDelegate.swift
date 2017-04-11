@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let homeScreen = HomeViewController()
         window?.rootViewController = homeScreen
+        //DataController.sharedInstance.getContext()
         return true
     }
 
