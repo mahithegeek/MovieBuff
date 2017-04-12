@@ -46,6 +46,26 @@ class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITable
         cell.textLabel?.text = movie.getTitleString()
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = self.watchListViewModel.getModelForCell(indexPath: indexPath)
+        let movieDetailsVC: MovieDetailsViewController = UIStoryboard(name: "MovieStoryboard", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as! MovieDetailsViewController
+        let movieDetailsViewModel = MovieDetailsViewModel(movie: movie as! Movie)
+        movieDetailsVC.movieDetailsViewModel = movieDetailsViewModel
+        self.navigationController?.pushViewController(movieDetailsVC, animated: true)
+        
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let index = self.watchList.indexPathForSelectedRow!
+        let movie = self.watchListViewModel.getModelForCell(indexPath: index)
+        let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
+        destination.movieDetailsViewModel = MovieDetailsViewModel(movie: movie as! Movie)
+        
+    }
+
 
     /*
     // MARK: - Navigation

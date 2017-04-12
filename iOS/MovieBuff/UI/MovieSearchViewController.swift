@@ -118,7 +118,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
         let index = self.tableView.indexPathForSelectedRow!
-        destination.movieDetailsViewModel = MovieDetailsViewModel(title: self.searchViewModel.getSelectedRowObject(row: index.row))
+        destination.movieDetailsViewModel = MovieDetailsViewModel(movie: self.searchViewModel.getSelectedRowObject(row: index.row))
         
     }
 

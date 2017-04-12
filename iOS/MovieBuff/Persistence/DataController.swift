@@ -51,6 +51,9 @@ class DataController : NSObject {
     func addMovieToWatchList (movie : Movie)->Bool {
         let movieToSave = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: self.managedObjectContext) as! Movie
         movieToSave.title = movie.title
+        movieToSave.id = movie.id
+        movieToSave.overView = movie.overView
+        movieToSave.posterPath = movie.posterPath
         
         do{
             try self.managedObjectContext.save()
