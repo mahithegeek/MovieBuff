@@ -37,7 +37,7 @@ class TMDBDataParser {
     }
     
     func createMovieObjectsWithJSON (json:[String:Any])->Movie{
-        return Movie(json: json, context: self.dataController.getContext())
+        return Movie(json: json, context: nil)
         
     }
 }

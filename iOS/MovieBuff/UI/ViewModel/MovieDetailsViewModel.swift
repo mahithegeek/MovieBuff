@@ -11,8 +11,8 @@ import UIKit
 class MovieDetailsViewModel {
     private var movie:Movie
     
-    init(title : Movie){
-        self.movie = title
+    init(movie : Movie){
+        self.movie = movie
     }
     
     func getPosterImage(completion : @escaping (UIImage?)->Void) {

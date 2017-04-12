@@ -8,15 +8,24 @@
 
 import Foundation
 import CoreData
+import UIKit
 class Movie : NSManagedObject{
     @NSManaged var id : String?
     @NSManaged var title : String?
     @NSManaged var posterPath : String?
     @NSManaged var overView : String?
+    var posterImage : UIImage?
     
-    convenience init(json:[String:Any],context:NSManagedObjectContext) {
-        let entity = NSEntityDescription.entity(forEntityName: "Movie", in: context)
-        self.init(entity: entity!, insertInto: nil)
+    convenience init(json:[String:Any],context:NSManagedObjectContext?) {
+        var entity : NSEntityDescription?
+        if(context == nil){
+             entity = NSEntityDescription.entity(forEntityName: "Movie", in: DataController.sharedInstance.getContext())
+        }
+        else{
+            entity = NSEntityDescription.entity(forEntityName: "Movie", in: DataController.sharedInstance.getContext())
+        }
+        
+        self.init(entity: entity!, insertInto: context)
         constructWithTMDBJSON(json: json)
     }
     
