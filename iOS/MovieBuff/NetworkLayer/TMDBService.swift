@@ -10,6 +10,11 @@ import Foundation
 import Moya
 
 class TMDBService : MovieServiceProtocol {
+    
+    class func getPrependingURL()->String{
+        return "https://image.tmdb.org/t/p/original"
+    }
+    
     func searchMovies(searchString: String, completion: @escaping ([Movie]?, NSError?) -> Void) {
         let serviceProvider = MoyaProvider<TMDBMovieService>()
         serviceProvider.request(.searchMovies(actor: searchString)) { result in

@@ -16,20 +16,28 @@ class MovieDetailsViewModel {
     }
     
     func getPosterImage(completion : @escaping (UIImage?)->Void) {
-        DispatchQueue.global().async {
-            guard let posterPath: String  = self.movie.getposterPath() else{
-                completion(nil)
-                return
-            }
-            let urlString = "https://image.tmdb.org/t/p/original" + posterPath
-            let url = NSURL(string: urlString)
-            guard let data = try? Data(contentsOf: url as! URL) else{
-                completion(nil)
-                return
-            }
-            let image = UIImage(data: data)
-            completion(image!)
+        guard let posterFilePath = self.movie.getposterFilePath() else{
+            downloadPoster(completion: completion)
+            return
         }
+        let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movie: self.movie))
+        print(filePath)
+        if FileManager.default.fileExists(atPath: filePath){
+            print("Yes")
+        }
+        let image = UIImage(contentsOfFile: String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movie: self.movie)))
+        completion(image)
+        return
+    }
+    
+    private func downloadPoster(completion:@escaping (UIImage?)->Void){
+        
+        func onMovieDownload(image:UIImage?){
+            DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!)
+            completion(image)
+        }
+        
+        MovieHelper().downloadPosterImage(movie: self.movie, completion: onMovieDownload)
     }
     
     func getMovieTitle()->String?{
