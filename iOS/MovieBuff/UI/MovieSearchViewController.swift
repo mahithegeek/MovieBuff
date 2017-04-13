@@ -11,6 +11,7 @@ import SwiftSpinner
 class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate {
     
     @IBOutlet var tableView : UITableView!
+    @IBOutlet var searchBar : UISearchBar!
     
     var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
@@ -72,28 +73,8 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         SwiftSpinner.show("Fetching your fucking Search....")
-        //getSearchResultsForString(searchString: searchBar.text!)
         searchMovies(searchString: searchBar.text!)
     }
-    
-    
-    
-    
-    /* private func getSearchResultsForString(searchString : String){
-        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
-        func searchResultsCallback (dataObjects : [[BaseFilmModel]]??,error:NSError?){
-            guard dataObjects != nil else {print(error ?? "test")
-                let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
-                present(alert, animated: true, completion: nil)
-                return
-            }
-            
-            self.searchViewModel.updateModel(filmModel: dataObjects!!)
-            self.stopLoadingIndicator()
-            self.tableView.reloadData()
-        }
-        dataProvider.getSearchResults(searchString: searchString, completion: searchResultsCallback)
-    }*/
     
     private func searchMovies (searchString : String) {
         let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
@@ -116,6 +97,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.searchBar.resignFirstResponder()
         let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
         let index = self.tableView.indexPathForSelectedRow!
         destination.movieDetailsViewModel = MovieDetailsViewModel(movie: self.searchViewModel.getSelectedRowObject(row: index.row))
