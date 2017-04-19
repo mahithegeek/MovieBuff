@@ -16,20 +16,34 @@ class MovieDetailsViewModel {
     }
     
     func getPosterImage(completion : @escaping (UIImage?)->Void) {
-        DispatchQueue.global().async {
-            guard let posterPath: String  = self.movie.getposterPath() else{
-                completion(nil)
-                return
-            }
-            let urlString = "https://image.tmdb.org/t/p/original" + posterPath
-            let url = NSURL(string: urlString)
-            guard let data = try? Data(contentsOf: url as! URL) else{
-                completion(nil)
-                return
-            }
-            let image = UIImage(data: data)
-            completion(image!)
+        guard let posterFilePath = self.movie.getposterFilePath() else{
+            downloadPoster(completion: completion)
+            return
         }
+        //let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath))
+        let filePath = DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath)
+        print(filePath)
+        if FileManager.default.fileExists(atPath: filePath.path){
+            print("Poster Image found")
+            let image = UIImage(contentsOfFile: filePath.path)
+            completion(image)
+            return
+        }
+        
+        completion(nil)
+        return
+    }
+    
+    private func downloadPoster(completion:@escaping (UIImage?)->Void){
+        
+        func onMovieDownload(image:UIImage?){
+            if !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
+                print("Unable to save poster image")
+            }
+            completion(image)
+        }
+        
+        MovieHelper().downloadPosterImage(movie: self.movie, completion: onMovieDownload)
     }
     
     func getMovieTitle()->String?{
@@ -38,5 +52,9 @@ class MovieDetailsViewModel {
     
     func saveMovie()->Bool{
        return DataController.sharedInstance.addMovieToWatchList(movie: self.movie)
+    }
+    
+    func canShowSaveMovie()->Bool{
+        return !self.movie.isMovieSaved()
     }
 }

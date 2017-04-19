@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class DataController : NSObject {
     var managedObjectContext : NSManagedObjectContext
@@ -44,9 +45,7 @@ class DataController : NSObject {
         return self.managedObjectContext
     }
     
-   /* func addToWatchList(movie : Movie)->Bool {
-        
-    }*/
+   
     
     func addMovieToWatchList (movie : Movie)->Bool {
         let movieToSave = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: self.managedObjectContext) as! Movie
@@ -54,6 +53,7 @@ class DataController : NSObject {
         movieToSave.id = movie.id
         movieToSave.overView = movie.overView
         movieToSave.posterPath = movie.posterPath
+        movieToSave.posterFilePath = movie.posterFilePath
         
         do{
             try self.managedObjectContext.save()
@@ -85,5 +85,32 @@ class DataController : NSObject {
         let movie = Movie(json: json, context: childContext)
         return movie
     }
+    
+    func saveMoviePosterImage(movie:Movie,downloadedImage:UIImage)->Bool{
+        guard let imageData = UIImageJPEGRepresentation(downloadedImage, 1.0) else{
+            return false
+        }
+        let fileName = getDocumentsDirectory().appendingPathComponent(getRelativePath(id: movie.getID()))
+        print("Writing the image to disk at location : \(fileName)")
+        try? imageData.write(to: fileName)
+        movie.setPosterFilePath(filePath: getRelativePath(id: movie.getID()))
+        return true
+    }
+    
+    func getMovieAbsoluteFileURL(movieFilePath : String)->URL{
+        //print(getDocumentsDirectory() .appendingPathComponent(movieFilePath))
+        return getDocumentsDirectory() .appendingPathComponent(movieFilePath)
+    }
+    
+    private func getRelativePath(id:String)->String {
+        let relativePath = id + ".jpeg"
+        return relativePath
+    }
+    private func getDocumentsDirectory()->URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return paths
+    }
+    
+    
     
 }

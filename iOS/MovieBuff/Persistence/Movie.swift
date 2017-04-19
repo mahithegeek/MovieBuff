@@ -14,7 +14,7 @@ class Movie : NSManagedObject{
     @NSManaged var title : String?
     @NSManaged var posterPath : String?
     @NSManaged var overView : String?
-    var posterImage : UIImage?
+    @NSManaged var posterFilePath : String?
     
     convenience init(json:[String:Any],context:NSManagedObjectContext?) {
         var entity : NSEntityDescription?
@@ -35,6 +35,21 @@ class Movie : NSManagedObject{
     
     func getTitleString()->String? {
         return self.value(forKey: "title") as? String
+    }
+    func getID()->String {
+        return self.value(forKey: "id") as! String
+    }
+    
+    func setPosterFilePath(filePath : String){
+        self.setValue(filePath, forKey: "posterFilePath")
+    }
+    
+    func getposterFilePath()->String?{
+        return self.value(forKey: "posterFilePath") as? String
+    }
+    
+    func isMovieSaved()->Bool {
+        return !self.objectID.isTemporaryID
     }
     
     private func constructWithTMDBJSON(json:[String:Any]){

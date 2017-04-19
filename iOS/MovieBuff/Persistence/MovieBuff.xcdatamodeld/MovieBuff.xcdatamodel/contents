@@ -3,10 +3,11 @@
     <entity name="Movie" representedClassName=".Movie" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="overView" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="posterFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="120"/>
     </elements>
 </model>
