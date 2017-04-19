@@ -20,20 +20,26 @@ class MovieDetailsViewModel {
             downloadPoster(completion: completion)
             return
         }
-        let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movie: self.movie))
+        //let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath))
+        let filePath = DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath)
         print(filePath)
-        if FileManager.default.fileExists(atPath: filePath){
-            print("Yes")
+        if FileManager.default.fileExists(atPath: filePath.path){
+            print("Poster Image found")
+            let image = UIImage(contentsOfFile: filePath.path)
+            completion(image)
+            return
         }
-        let image = UIImage(contentsOfFile: String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movie: self.movie)))
-        completion(image)
+        
+        completion(nil)
         return
     }
     
     private func downloadPoster(completion:@escaping (UIImage?)->Void){
         
         func onMovieDownload(image:UIImage?){
-            DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!)
+            if !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
+                print("Unable to save poster image")
+            }
             completion(image)
         }
         
@@ -46,5 +52,9 @@ class MovieDetailsViewModel {
     
     func saveMovie()->Bool{
        return DataController.sharedInstance.addMovieToWatchList(movie: self.movie)
+    }
+    
+    func canShowSaveMovie()->Bool{
+        return !self.movie.isMovieSaved()
     }
 }

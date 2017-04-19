@@ -20,6 +20,15 @@ class MovieDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
         fillUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if self.movieDetailsViewModel.canShowSaveMovie() {
+            self.saveMovieButton.isHidden = false
+        }
+        else {
+            self.saveMovieButton.isHidden = true
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

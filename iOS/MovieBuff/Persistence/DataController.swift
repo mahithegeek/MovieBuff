@@ -91,15 +91,15 @@ class DataController : NSObject {
             return false
         }
         let fileName = getDocumentsDirectory().appendingPathComponent(getRelativePath(id: movie.getID()))
-        print(fileName)
+        print("Writing the image to disk at location : \(fileName)")
         try? imageData.write(to: fileName)
         movie.setPosterFilePath(filePath: getRelativePath(id: movie.getID()))
         return true
     }
     
-    func getMovieAbsoluteFileURL(movie:Movie)->URL{
-        print(getDocumentsDirectory() .appendingPathComponent(movie.posterFilePath!))
-        return getDocumentsDirectory() .appendingPathComponent(movie.posterFilePath!)
+    func getMovieAbsoluteFileURL(movieFilePath : String)->URL{
+        //print(getDocumentsDirectory() .appendingPathComponent(movieFilePath))
+        return getDocumentsDirectory() .appendingPathComponent(movieFilePath)
     }
     
     private func getRelativePath(id:String)->String {
@@ -108,8 +108,6 @@ class DataController : NSObject {
     }
     private func getDocumentsDirectory()->URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        //let documentsDirectory = paths[0]
-        print(paths)
         return paths
     }
     

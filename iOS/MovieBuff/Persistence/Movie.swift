@@ -48,6 +48,10 @@ class Movie : NSManagedObject{
         return self.value(forKey: "posterFilePath") as? String
     }
     
+    func isMovieSaved()->Bool {
+        return !self.objectID.isTemporaryID
+    }
+    
     private func constructWithTMDBJSON(json:[String:Any]){
         //TODO can we do better??
         var title = json["title"]
