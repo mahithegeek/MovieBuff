@@ -8,9 +8,9 @@
 
 import UIKit
 import SwiftSpinner
-class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearchBarDelegate {
+class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UISearchBarDelegate {
     
-    @IBOutlet var tableView : UITableView!
+    
     @IBOutlet var searchBar : UISearchBar!
     
     var searchViewModel : MovieSearchViewModel!
@@ -20,13 +20,13 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //self.tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -76,9 +76,7 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
         searchMovies(searchString: searchBar.text!)
     }
     
-    private func searchMovies (searchString : String) {
-        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
-        
+    private func searchMovies(searchString:String){
         func searchResultsCallback(movies : [Movie]?,error:NSError?) {
             SwiftSpinner.hide()
             guard let movies = movies else {
@@ -92,9 +90,9 @@ class MovieSearchViewController: UIViewController,UITableViewDataSource,UISearch
             
             self.tableView.reloadData()
         }
-        
-        dataProvider.searchMovies(searchString: searchString, completion: searchResultsCallback)
+        self.searchViewModel.searchMovies(searchString: searchString, completion: searchResultsCallback)
     }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         self.searchBar.resignFirstResponder()

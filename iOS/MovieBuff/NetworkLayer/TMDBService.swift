@@ -27,10 +27,8 @@ class TMDBService : MovieServiceProtocol {
                 if(movies != nil){
                     completion(movies,nil)
                 }
-                
-            default :
-                break
-                
+            case let .failure(error) :
+                completion(nil,NSError(domain: error.errorDescription!, code: 0, userInfo: nil))
             }
             
         }

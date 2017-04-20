@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+
 class MovieSearchViewModel : NSObject {
     private var movies : [NSManagedObject]
     
@@ -16,6 +17,11 @@ class MovieSearchViewModel : NSObject {
         self.movies = movies
     }
     
+    
+    func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
+        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
+        dataProvider.searchMovies(searchString: searchString, completion: completion)
+    }
     
     //TO-Do make it powerful
     func numberOfSections()->Int{
