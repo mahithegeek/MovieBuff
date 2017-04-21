@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MovieWatchListViewController: BaseListViewController,UITableViewDelegate,UITableViewDataSource {
     
-    @IBOutlet weak var watchList : UITableView!
+    //@IBOutlet weak var tableView : UITableView!
     //var movieWatchList : [Movie] = []
     var watchListViewModel : MovieWatchListViewModel!
     
@@ -21,7 +21,7 @@ class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITable
     
     override func viewWillAppear(_ animated: Bool) {
         self.watchListViewModel.refreshMovieWatchList()
-        self.watchList.reloadData()
+        self.tableView.reloadData()
     }
     
 
@@ -59,7 +59,7 @@ class MovieWatchListViewController: UIViewController,UITableViewDelegate,UITable
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let index = self.watchList.indexPathForSelectedRow!
+        let index = self.tableView.indexPathForSelectedRow!
         let movie = self.watchListViewModel.getModelForCell(indexPath: index)
         let destination: MovieDetailsViewController =  segue.destination as! MovieDetailsViewController
         destination.movieDetailsViewModel = MovieDetailsViewModel(movie: movie as! Movie)

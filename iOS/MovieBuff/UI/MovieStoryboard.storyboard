@@ -174,8 +174,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Movies To Watch" id="0Iv-ry-lcu"/>
                     <connections>
+                        <outlet property="tableView" destination="VwB-7J-nJP" id="pKz-kz-ddI"/>
                         <outlet property="view" destination="VwB-7J-nJP" id="JcH-5P-whG"/>
-                        <outlet property="watchList" destination="VwB-7J-nJP" id="FJ7-Ud-68L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYo-0r-Ru7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,7 +205,7 @@
         <scene sceneID="DYT-Kf-toW">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="46y-CE-op4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="8CJ-fP-L5B"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="8CJ-fP-L5B"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="p6i-Pa-89a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -221,11 +221,11 @@
             </objects>
             <point key="canvasLocation" x="-300" y="-67.016491754122939"/>
         </scene>
-        <!--Watch List-->
+        <!--Navigation Controller-->
         <scene sceneID="qsu-zD-ECb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vGj-UB-zdp" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Watch List" id="1iP-5R-l2x"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="1iP-5R-l2x"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTr-bG-JSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
