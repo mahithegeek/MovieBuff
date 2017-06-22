@@ -12,7 +12,7 @@ import Moya
 class TMDBService : MovieServiceProtocol {
     
     class func getPrependingURL()->String{
-        return "https://image.tmdb.org/t/p/original"
+        return "https://image.tmdb.org/t/p/w500"
     }
     
     func searchMovies(searchString: String, completion: @escaping ([Movie]?, NSError?) -> Void) {

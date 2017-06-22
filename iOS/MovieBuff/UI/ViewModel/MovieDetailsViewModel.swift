@@ -37,7 +37,7 @@ class MovieDetailsViewModel {
     private func downloadPoster(completion:@escaping (UIImage?)->Void){
         
         func onMovieDownload(image:UIImage?){
-            if !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
+            if image != nil && !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
                 print("Unable to save poster image")
             }
             completion(image)
@@ -48,6 +48,10 @@ class MovieDetailsViewModel {
     
     func getMovieTitle()->String?{
         return self.movie.getTitleString()
+    }
+    
+    func getMovieOverView()->String? {
+        return self.movie.getMovieOverView()
     }
     
     func saveMovie()->Bool{

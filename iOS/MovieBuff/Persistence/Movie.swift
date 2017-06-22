@@ -52,6 +52,10 @@ class Movie : NSManagedObject{
         return !self.objectID.isTemporaryID
     }
     
+    func getMovieOverView()->String? {
+        return self.value(forKey: "overView") as? String
+    }
+    
     private func constructWithTMDBJSON(json:[String:Any]){
         //TODO can we do better??
         var title = json["title"]
