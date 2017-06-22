@@ -32,5 +32,6 @@ class MovieWatchListViewModel : tableViewModel{
     
     func selectedRow(indexPath: IndexPath) {
         //do nothing
+        
     }
 }

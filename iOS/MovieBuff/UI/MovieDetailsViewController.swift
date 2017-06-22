@@ -14,6 +14,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var imageView : UIImageView!
     @IBOutlet weak var movieName : UILabel!
     @IBOutlet weak var saveMovieButton : UIButton!
+    @IBOutlet weak var movieOverView : UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -47,8 +48,13 @@ class MovieDetailsViewController: UIViewController {
     */
     func fillUI(){
         SwiftSpinner.show("Setting Up Movie Details baby .....")
-        self.movieName.text = self.movieDetailsViewModel.getMovieTitle()
+        //self.movieName.text = self.movieDetailsViewModel.getMovieTitle()
         updateImage()
+        showMovieOverView()
+    }
+    
+    func showMovieOverView() {
+        self.movieOverView.text = self.movieDetailsViewModel.getMovieOverView()
     }
     
     func updateImage(){
