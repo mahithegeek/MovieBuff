@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MovieBuff" customModuleProvider="target">
             <connections>
-                <outlet property="moviesButton" destination="nDM-Pb-ElN" id="eq0-cC-6qQ"/>
                 <outlet property="tvButton" destination="4lg-d7-h3E" id="94A-uj-fGL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,49 +19,69 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="awk-pv-FoK">
-                    <rect key="frame" x="137" y="162" width="92" height="45"/>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgj-uH-GU0">
+                    <rect key="frame" x="104.5" y="148" width="166" height="64"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ADC-H6-Ftd">
-                            <rect key="frame" x="0.0" y="0.0" width="92" height="45"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nDM-Pb-ElN">
-                                    <rect key="frame" x="0.0" y="0.0" width="92" height="45"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
-                                    <state key="normal" title="Movies">
-                                        <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="moviesButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="HTF-xe-nM9"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                        </stackView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Movie" translatesAutoresizingMaskIntoConstraints="NO" id="gnJ-LQ-jPW">
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HZv-sp-O41">
+                            <rect key="frame" x="64" y="0.0" width="102" height="64"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <state key="normal" title="Movies">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="moviesButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="u5b-ax-Q1o"/>
+                            </connections>
+                        </button>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="92" id="KlW-iJ-pT2"/>
-                        <constraint firstAttribute="height" constant="45" id="urJ-6G-ZC8"/>
-                    </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-d7-h3E">
-                    <rect key="frame" x="133" y="246" width="101" height="56"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                    <state key="normal" title="TV">
-                        <color key="titleColor" white="0.96999999999999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </state>
-                    <connections>
-                        <action selector="tvButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="g70-xn-FHA"/>
-                    </connections>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g63-c0-MQa">
+                    <rect key="frame" x="111" y="261" width="153" height="74"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Books" translatesAutoresizingMaskIntoConstraints="NO" id="fTn-hg-BSL">
+                            <rect key="frame" x="0.0" y="0.0" width="64" height="74"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="74" id="yae-UK-0mr"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lg-d7-h3E">
+                            <rect key="frame" x="64" y="0.0" width="89" height="74"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <state key="normal" title="Books">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="tvButtonClickedWithSender:" destination="-1" eventType="touchUpInside" id="g70-xn-FHA"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F1n-Ny-DoZ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <color key="barTintColor" red="1" green="0.13159107680000001" blue="0.08848194409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="MovieBuff" id="mbC-Qk-HQb"/>
+                    </items>
+                </navigationBar>
             </subviews>
-            <color key="backgroundColor" red="0.029527505239592799" green="1" blue="0.88692009185511123" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="awk-pv-FoK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="137" id="6bO-rV-4Ux"/>
-                <constraint firstItem="awk-pv-FoK" firstAttribute="leading" secondItem="4lg-d7-h3E" secondAttribute="leading" id="U9j-Vt-CbU"/>
-                <constraint firstItem="awk-pv-FoK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="162" id="pMk-1W-MTr"/>
-                <constraint firstItem="4lg-d7-h3E" firstAttribute="top" secondItem="awk-pv-FoK" secondAttribute="bottom" constant="55" id="tpO-Cv-LL2"/>
+                <constraint firstItem="Qgj-uH-GU0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="148" id="MLJ-NU-ZMH"/>
+                <constraint firstItem="g63-c0-MQa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aCH-AP-b0B"/>
+                <constraint firstItem="g63-c0-MQa" firstAttribute="top" secondItem="Qgj-uH-GU0" secondAttribute="bottom" constant="49" id="c4i-DY-jYT"/>
+                <constraint firstItem="Qgj-uH-GU0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="d2X-RC-Vhc"/>
             </constraints>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Books" width="64" height="64"/>
+        <image name="Movie" width="64" height="64"/>
+    </resources>
 </document>
