@@ -43,7 +43,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func tvButtonClicked (sender :UIButton) {
-        let alertController = UIAlertController(title: "TV", message: "TV Coming Soon", preferredStyle:.alert)
+        let alertController = UIAlertController(title: "Books", message: "Books Coming Soon", preferredStyle:.alert)
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController,animated: true, completion: nil);

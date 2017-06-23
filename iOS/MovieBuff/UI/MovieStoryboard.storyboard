@@ -93,6 +93,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X3b-Ww-4Pi">
                                 <rect key="frame" x="127" y="319" width="122" height="30"/>
                                 <state key="normal" title="Add to Watch List"/>
+                                <connections>
+                                    <action selector="onSaveMovieClickedWithSender:" destination="Nd7-bP-5o1" eventType="touchUpInside" id="C2b-FI-5WA"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="QfB-kj-6eP">
                                 <rect key="frame" x="16" y="380" width="343" height="159"/>
@@ -201,7 +204,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="46y-CE-op4" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="search" id="8CJ-fP-L5B"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="p6i-Pa-89a">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p6i-Pa-89a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.13159107680000001" blue="0.08848194409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -224,7 +227,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vGj-UB-zdp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="1iP-5R-l2x"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cTr-bG-JSJ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cTr-bG-JSJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="0.13159107680000001" blue="0.08848194409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
