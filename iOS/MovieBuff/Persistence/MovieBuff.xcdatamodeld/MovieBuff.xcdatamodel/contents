@@ -5,9 +5,10 @@
         <attribute name="overView" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posterFilePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Movie" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

@@ -15,6 +15,7 @@ class Movie : NSManagedObject{
     @NSManaged var posterPath : String?
     @NSManaged var overView : String?
     @NSManaged var posterFilePath : String?
+    @NSManaged var rating : String?
     
     convenience init(json:[String:Any],context:NSManagedObjectContext?) {
         var entity : NSEntityDescription?
@@ -82,5 +83,12 @@ class Movie : NSManagedObject{
             overView = ""
         }
         self.setValue(overView, forKey: "overView")
+        
+        var rating = String(describing: json["vote_average"])
+        
+        if(rating == nil) {
+            rating = ""
+        }
+        self.setValue(rating, forKey: "rating")
     }
 }
