@@ -19,7 +19,7 @@ class MovieSearchViewModel : NSObject {
     
     
     func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
-        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
+        let dataProvider = MovieDataprovider(provider: providerType.iTunesService)
         dataProvider.searchMovies(searchString: searchString, completion: completion)
     }
     

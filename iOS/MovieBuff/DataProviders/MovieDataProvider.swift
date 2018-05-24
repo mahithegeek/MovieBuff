@@ -11,6 +11,7 @@ import Foundation
 enum providerType {
     case weMakeSites
     case tmdbService
+    case iTunesService
 }
 
 extension providerType {
@@ -20,6 +21,8 @@ extension providerType {
                 return weMakeSitesService()
             case .tmdbService :
                 return TMDBService()
+            case .iTunesService :
+                return ITunesService()
         }
     }
     

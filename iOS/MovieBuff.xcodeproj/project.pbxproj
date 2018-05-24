@@ -42,6 +42,8 @@
 		80FB48701EA8D806001E68CA /* BaseListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FB486F1EA8D806001E68CA /* BaseListViewController.swift */; };
 		80FE916A1E69519B0041223F /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE91691E69519B0041223F /* MovieDetailsViewController.swift */; };
 		80FE916C1E6965500041223F /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE916B1E6965500041223F /* MovieDetailsViewModel.swift */; };
+		C854E07820B6E1BC00902A01 /* ITunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E07720B6E1BC00902A01 /* ITunesService.swift */; };
+		C854E07A20B6E2D900902A01 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E07920B6E2D900902A01 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		8DADDE9EEE740722C6AC3EC8 /* Pods-MovieBuffUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieBuffUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieBuffUITests/Pods-MovieBuffUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9D753DF343CB3E7C70C8DCFB /* Pods-MovieBuff.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieBuff.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieBuff/Pods-MovieBuff.release.xcconfig"; sourceTree = "<group>"; };
 		BC1B58D83605B18E79389757 /* Pods_MovieBuffUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieBuffUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C854E07720B6E1BC00902A01 /* ITunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ITunesService.swift; path = NetworkLayer/ITunesService.swift; sourceTree = "<group>"; };
+		C854E07920B6E2D900902A01 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = NetworkLayer/NetworkManager.swift; sourceTree = "<group>"; };
 		E74345C2E38BE60549E07D67 /* Pods_MovieBuffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieBuffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -281,6 +285,8 @@
 				80506F051E5D6C27007D5C4B /* MovieServiceProtocol.swift */,
 				80E5BFDD1E6FDBEB0014D190 /* TMDBService.swift */,
 				80325BF81E71610E00DE9A1C /* TMDBDataParser.swift */,
+				C854E07720B6E1BC00902A01 /* ITunesService.swift */,
+				C854E07920B6E2D900902A01 /* NetworkManager.swift */,
 			);
 			name = NetworkLayer;
 			sourceTree = "<group>";
@@ -383,7 +389,7 @@
 				TargetAttributes = {
 					801A66371E38A1AD00F52526 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = B9C7GRQCYQ;
+						DevelopmentTeam = RAKRWMN9VH;
 						ProvisioningStyle = Automatic;
 					};
 					801A664B1E38A1AD00F52526 = {
@@ -590,6 +596,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C854E07A20B6E2D900902A01 /* NetworkManager.swift in Sources */,
 				807F2FCD1E93A59C0060AF65 /* Movie.swift in Sources */,
 				80506F061E5D6C27007D5C4B /* MovieServiceProtocol.swift in Sources */,
 				809C5C921E5EB1A00057EA7B /* Title.swift in Sources */,
@@ -611,6 +618,7 @@
 				80E009371E979B6800869801 /* UIUtilities.swift in Sources */,
 				801A666C1E38A3CA00F52526 /* HomeViewController.swift in Sources */,
 				804A659A1E5C6404003D5111 /* Actor.swift in Sources */,
+				C854E07820B6E1BC00902A01 /* ITunesService.swift in Sources */,
 				8028394F1E9F7D3500EA9D6A /* MovieHelper.swift in Sources */,
 				80E5BFDE1E6FDBEB0014D190 /* TMDBService.swift in Sources */,
 				80506F041E5D6AE7007D5C4B /* MovieDataProvider.swift in Sources */,
@@ -771,11 +779,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B9C7GRQCYQ;
+				DEVELOPMENT_TEAM = RAKRWMN9VH;
 				INFOPLIST_FILE = MovieBuff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kofax.MovieBuff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ca.MovieBuff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -792,11 +800,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B9C7GRQCYQ;
+				DEVELOPMENT_TEAM = RAKRWMN9VH;
 				INFOPLIST_FILE = MovieBuff/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kofax.MovieBuff;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ca.MovieBuff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
