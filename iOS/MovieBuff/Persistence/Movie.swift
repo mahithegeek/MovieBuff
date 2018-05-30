@@ -30,6 +30,18 @@ class Movie : NSManagedObject{
         constructWithTMDBJSON(json: json)
     }
     
+    convenience init(context:NSManagedObjectContext?) {
+        var entity : NSEntityDescription?
+        if(context == nil){
+            entity = NSEntityDescription.entity(forEntityName: "Movie", in: DataController.sharedInstance.getContext())
+        }
+        else{
+            entity = NSEntityDescription.entity(forEntityName: "Movie", in: DataController.sharedInstance.getContext())
+        }
+        
+        self.init(entity: entity!, insertInto: context)
+    }
+    
     func getposterPath()->String?{
         return self.value(forKey: "posterPath") as? String
     }

@@ -11,23 +11,32 @@ import Foundation
 class NetworkManager {
     
     func postRequest(endPoint:String,completion: @escaping(Data?,Error?)->Void){
-        let defaultSession = URLSession(configuration: .default)
         guard let url = URL(string: endPoint)
             else{
                 return
         }
-        var dataTask: URLSessionDataTask?
-            dataTask = defaultSession.dataTask(with: url){data, response, error in
-            
-                if let error = error {
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = 30
+        configuration.timeoutIntervalForResource = 30
+        let dataSession = URLSession(configuration: configuration)
+        
+        let dataTask = dataSession.dataTask(with: url){data, response, error in
+        
+            if let error = error {
+                completion(nil,error)
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
                     completion(nil,error)
-                } else if let data = data,
-                    let response = response as? HTTPURLResponse{
-                    completion(data,nil)
-                }
+                    return
+            }
+            if let data = data {
+                completion(data,nil)
+            }
         }
-        
-        dataTask?.resume()
-        
+        //dataTask.defa
+        dataTask.resume()
     }
 }
