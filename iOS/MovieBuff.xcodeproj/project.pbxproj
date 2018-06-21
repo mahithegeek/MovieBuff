@@ -45,6 +45,7 @@
 		C802AF8720BC3B7200A9F639 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C802AF8620BC3B7200A9F639 /* ThumbnailCell.swift */; };
 		C854E07820B6E1BC00902A01 /* ITunesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E07720B6E1BC00902A01 /* ITunesService.swift */; };
 		C854E07A20B6E2D900902A01 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C854E07920B6E2D900902A01 /* NetworkManager.swift */; };
+		C877BDEB20DA79570073D3D9 /* ImageTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C877BDEA20DA79570073D3D9 /* ImageTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		C802AF8620BC3B7200A9F639 /* ThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ThumbnailCell.swift; path = UI/ThumbnailCell.swift; sourceTree = "<group>"; };
 		C854E07720B6E1BC00902A01 /* ITunesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ITunesService.swift; path = NetworkLayer/ITunesService.swift; sourceTree = "<group>"; };
 		C854E07920B6E2D900902A01 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = NetworkLayer/NetworkManager.swift; sourceTree = "<group>"; };
+		C877BDEA20DA79570073D3D9 /* ImageTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageTask.swift; path = UI/ViewModel/ImageTask.swift; sourceTree = "<group>"; };
 		E74345C2E38BE60549E07D67 /* Pods_MovieBuffTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieBuffTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -276,6 +278,7 @@
 				802B2F4C1E727B40002C466C /* MovieSearchViewModel.swift */,
 				8091DD3D1E9BA92E0027DC49 /* TableViewModelProtocol.swift */,
 				8091DD3F1E9BAA090027DC49 /* MovieWatchListViewModel.swift */,
+				C877BDEA20DA79570073D3D9 /* ImageTask.swift */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				801A666C1E38A3CA00F52526 /* HomeViewController.swift in Sources */,
 				804A659A1E5C6404003D5111 /* Actor.swift in Sources */,
 				C854E07820B6E1BC00902A01 /* ITunesService.swift in Sources */,
+				C877BDEB20DA79570073D3D9 /* ImageTask.swift in Sources */,
 				8028394F1E9F7D3500EA9D6A /* MovieHelper.swift in Sources */,
 				80E5BFDE1E6FDBEB0014D190 /* TMDBService.swift in Sources */,
 				80506F041E5D6AE7007D5C4B /* MovieDataProvider.swift in Sources */,

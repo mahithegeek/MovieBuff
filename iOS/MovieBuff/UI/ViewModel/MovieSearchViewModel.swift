@@ -8,11 +8,14 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 
-class MovieSearchViewModel : NSObject {
+class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     private var movies : [NSManagedObject]
-    
+    private var imageTasks = [Int:ImageTask]()
+    private let session = URLSession(configuration: URLSessionConfiguration.default)
+    var imageCompletionHandler  = [Int:((UIImage?)->Void)]()
     init(movies:[Movie]){
         self.movies = movies
     }
@@ -73,5 +76,53 @@ class MovieSearchViewModel : NSObject {
     
     func getSelectedRowObject(row:Int)->Movie {
         return (self.movies[row] as? Movie)!
+    }
+    
+    
+    func imageForCell(section:Int,row:Int,completion:@escaping (UIImage?)->Void) -> Void {
+        
+        guard let imageTask = self.imageTasks[row]
+            else{
+                guard let movieObject = modelForCell(section: section, row: row)
+                    else{
+                        completion(nil)
+                        return
+                }
+                
+                guard let posterURLString = movieObject.posterPath
+                    else{
+                        completion(nil)
+                        return
+                }
+                guard let posterURL = URL(string: posterURLString)
+                    else{
+                        completion(nil)
+                        return
+                }
+                setupImageTask(position: row, url: posterURL)
+                imageCompletionHandler[row] = completion
+                return
+        }
+        
+        completion(imageTask.image)
+        
+    }
+    
+    func willDisplayCell(section:Int,row:Int){
+        self.imageTasks[row]?.resume()
+    }
+    
+    func didEndDisplay(section:Int,row:Int) {
+        self.imageTasks[row]?.pause()
+    }
+    
+    private func setupImageTask(position:Int,url:URL){
+        let imageTask = ImageTask(position: position, url: url, session: self.session, delegate: self)
+        self.imageTasks[position] = imageTask
+        print("count of tasks \(self.imageTasks.count)")
+    }
+    
+    func imageDownloaded(position: Int,image: UIImage) {
+        imageCompletionHandler[position]!(image)
     }
 }
