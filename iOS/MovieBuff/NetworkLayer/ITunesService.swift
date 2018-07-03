@@ -28,7 +28,7 @@ class ITunesService: MovieServiceProtocol {
             }
         }
         
-        let endPoint = "https://itunes.apple.com/search?term="+urlEncodeSearchString(searchString: searchString)+"&media=movie"
+        let endPoint = "https://itunes.apple.com/search?term="+urlEncodeSearchString(searchString: searchString)
         //"https://itunes.apple.com/search?term=ironman&media=movie"
         networkManager.postRequest(endPoint:  endPoint, completion: handler)
     }
@@ -56,19 +56,25 @@ class ITunesService: MovieServiceProtocol {
             return (nil,nil)
         }
         
-        var movieArray = [Movie]()
+        
+        
+        var movieObjectsArray = [Movie]()
         
         for movie in array {
-            let movieObject = Movie(context: nil)
-           // movieObject.overView = movie["longDescription"] as? String
-            movieObject.setValue(movie["trackName"], forKey: "title")
-            movieObject.setValue(String(movie["trackId"] as! Int), forKey: "id")
-            movieObject.setValue(getEnhancedThumbNailURL(artWorkurl: movie["artworkUrl100"]! as! String) , forKey: "posterPath")
-            //movieObject.setValue("https://is5-ssl.mzstatic.com/image/thumb/Video118/v4/02/0e/c9/020ec98b-f4b3-05e9-2de3-5e7d0363b298/source/600x600bb.jpg", forKey: "posterPath")
-            movieObject.setValue(movie["longDescription"], forKey: "overView")
-            movieArray.append(movieObject)
+            let kind : String = movie["kind"] as! String
+            if(kind == "feature-movie") {
+                let movieObject = Movie(context: nil)
+                // movieObject.overView = movie["longDescription"] as? String
+                movieObject.setValue(movie["trackName"], forKey: "title")
+                movieObject.setValue(String(movie["trackId"] as! Int), forKey: "id")
+                movieObject.setValue(getEnhancedThumbNailURL(artWorkurl: movie["artworkUrl100"]! as! String) , forKey: "posterPath")
+                //movieObject.setValue("https://is5-ssl.mzstatic.com/image/thumb/Video118/v4/02/0e/c9/020ec98b-f4b3-05e9-2de3-5e7d0363b298/source/600x600bb.jpg", forKey: "posterPath")
+                movieObject.setValue(movie["longDescription"], forKey: "overView")
+                movieObjectsArray.append(movieObject)
+            }
+            
         }
-        return (movieArray,nil)
+        return (movieObjectsArray,nil)
         
     }
     

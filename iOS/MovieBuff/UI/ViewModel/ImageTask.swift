@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ImageTaskDownloader {
-    func imageDownloaded(position:Int,image:UIImage)
+    func imageDownloaded(position:Int,image:UIImage,error:Error)
 }
 
 class ImageTask {

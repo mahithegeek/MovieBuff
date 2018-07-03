@@ -10,20 +10,31 @@ import Foundation
 import CoreData
 import UIKit
 
-
+protocol MovieSearchViewModelView:AnyObject {
+    func reloadView()
+}
 class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     private var movies : [NSManagedObject]
     private var imageTasks = [Int:ImageTask]()
     private let session = URLSession(configuration: URLSessionConfiguration.default)
     var imageCompletionHandler  = [Int:((UIImage?)->Void)]()
+    weak var delegate : MovieSearchViewModelView?
     init(movies:[Movie]){
         self.movies = movies
     }
     
     
     func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
+        clearOldSearch()
         let dataProvider = MovieDataprovider(provider: providerType.iTunesService)
         dataProvider.searchMovies(searchString: searchString, completion: completion)
+    }
+    
+    func clearOldSearch () {
+        self.imageTasks.removeAll()
+        self.imageCompletionHandler.removeAll()
+        self.delegate?.reloadView()
+        
     }
     
     //TO-Do make it powerful
@@ -119,10 +130,11 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     private func setupImageTask(position:Int,url:URL){
         let imageTask = ImageTask(position: position, url: url, session: self.session, delegate: self)
         self.imageTasks[position] = imageTask
-        print("count of tasks \(self.imageTasks.count)")
+        print("Setting up image download for image \(url) count of tasks \(self.imageTasks.count)")
     }
     
     func imageDownloaded(position: Int,image: UIImage) {
+        print("Image downloaded for position \(position)")
         imageCompletionHandler[position]!(image)
     }
 }
