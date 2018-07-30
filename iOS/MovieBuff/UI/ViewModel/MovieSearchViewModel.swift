@@ -8,19 +8,44 @@
 
 import Foundation
 import CoreData
+import UIKit
 
-
-class MovieSearchViewModel : NSObject {
+protocol MovieSearchViewModelView:AnyObject {
+    func reloadView()
+}
+class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     private var movies : [NSManagedObject]
-    
+    private var imageTasks = [Int:ImageTask]()
+    private let session = URLSession(configuration: URLSessionConfiguration.default)
+    var imageCompletionHandler  = [Int:((UIImage?)->Void)]()
+    weak var delegate : MovieSearchViewModelView?
     init(movies:[Movie]){
         self.movies = movies
     }
     
     
     func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
-        let dataProvider = MovieDataprovider(provider: providerType.tmdbService)
-        dataProvider.searchMovies(searchString: searchString, completion: completion)
+        clearOldSearch()
+        let dataProvider = MovieDataprovider(provider: providerType.iTunesService)
+        
+        func searchResultsCallback(movies:[Movie]?,error:NSError?) {
+            guard let movies = movies else{
+                completion(nil,error)
+                return
+            }
+            
+            self.updateModel(movies: movies)
+            completion(movies,nil)
+        }
+        dataProvider.searchMovies(searchString: searchString, completion: searchResultsCallback)
+    }
+    
+    func clearOldSearch () {
+        self.imageTasks.removeAll()
+        self.imageCompletionHandler.removeAll()
+        self.movies.removeAll()
+        self.delegate?.reloadView()
+        
     }
     
     //TO-Do make it powerful
@@ -66,12 +91,66 @@ class MovieSearchViewModel : NSObject {
     }
     
     
-    func updateModel(movies:[Movie]){
+    private func updateModel(movies:[Movie]){
         self.movies = movies
         print("count after \(self.movies.count)")
     }
     
     func getSelectedRowObject(row:Int)->Movie {
         return (self.movies[row] as? Movie)!
+    }
+    
+    
+    func imageForCell(section:Int,row:Int,completion:@escaping (UIImage?)->Void) -> Void {
+        
+        guard let imageTask = self.imageTasks[row]
+            else{
+                guard let movieObject = modelForCell(section: section, row: row)
+                    else{
+                        completion(nil)
+                        return
+                }
+                
+                guard let posterURLString = movieObject.posterPath
+                    else{
+                        completion(nil)
+                        return
+                }
+                guard let posterURL = URL(string: posterURLString)
+                    else{
+                        completion(nil)
+                        return
+                }
+                setupImageTask(position: row, url: posterURL)
+                imageCompletionHandler[row] = completion
+                return
+        }
+        
+        completion(imageTask.image)
+        
+    }
+    
+    func willDisplayCell(section:Int,row:Int){
+        self.imageTasks[row]?.resume()
+    }
+    
+    func didEndDisplay(section:Int,row:Int) {
+        self.imageTasks[row]?.pause()
+    }
+    
+    private func setupImageTask(position:Int,url:URL){
+        let imageTask = ImageTask(position: position, url: url, session: self.session, delegate: self)
+        self.imageTasks[position] = imageTask
+        print("Setting up image download for image \(url) count of tasks \(self.imageTasks.count)")
+    }
+    
+    func imageDownloaded(position: Int,image: UIImage?,error:Error?) {
+        if error != nil {
+            print("Error occured while downloading Image  for position \(position)")
+            imageCompletionHandler[position]!(UIImage(named: "image_error"))
+            return
+        }
+        print("Image downloaded for position \(position)")
+        imageCompletionHandler[position]!(image)
     }
 }

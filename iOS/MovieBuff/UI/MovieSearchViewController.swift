@@ -8,10 +8,13 @@
 
 import UIKit
 import SwiftSpinner
-class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UISearchBarDelegate {
-    
+class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UISearchBarDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var searchBar : UISearchBar!
+    @IBOutlet var collectionView : UICollectionView!
+    
+    fileprivate let sectionInsets = UIEdgeInsets(top: 10.0, left: 10, bottom: 10.0, right: 10)
+    fileprivate let itemsPerRow: CGFloat = 3
     
     var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
@@ -62,6 +65,60 @@ class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UI
         return cell
     }
     
+    //Mark - Collection View methods
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return searchViewModel.numberOfRowsForModel(sectionNumber: section)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SearchController", for: indexPath) as! ThumbnailCell
+        
+        func completionHandler(image:UIImage?){
+            guard let image = image
+                else{
+                    return 
+            }
+            DispatchQueue.main.async{
+                cell.thumbNail?.image = image
+            }
+            
+        }
+        
+        searchViewModel.imageForCell(section: indexPath.section, row: indexPath.row, completion: completionHandler)
+        
+        return cell
+    }
+    
+    //MARK collection view flow layout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+//        let availableWidth = view.frame.width - paddingSpace
+//        let widthPerItem = availableWidth / itemsPerRow
+//
+//        return CGSize(width: widthPerItem, height: widthPerItem)
+        
+        let width = collectionView.frame.width / 3 - 40 / 3
+        return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        searchViewModel.willDisplayCell(section: indexPath.section, row: indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        searchViewModel.didEndDisplay(section: indexPath.section, row: indexPath.row)
+    }
     
     //Mark - Search Methods
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -72,7 +129,7 @@ class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UI
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        SwiftSpinner.show("Fetching your fucking Search....")
+        SwiftSpinner.show("Fetching your Search....")
         searchMovies(searchString: searchBar.text!)
     }
     
@@ -88,7 +145,10 @@ class MovieSearchViewController: BaseListViewController,UITableViewDataSource,UI
             
             self.searchViewModel.updateModel(movies: movies)
             
-            self.tableView.reloadData()
+            DispatchQueue.main.sync {
+                self.collectionView.reloadData()
+            }
+            
         }
         self.searchViewModel.searchMovies(searchString: searchString, completion: searchResultsCallback)
     }

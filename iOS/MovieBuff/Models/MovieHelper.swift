@@ -16,9 +16,14 @@ class  MovieHelper {
                 completion(nil)
                 return
             }
-            let urlString = TMDBService.getPrependingURL() + posterPath
-            let url = NSURL(string: urlString)
-            guard let data = try? Data(contentsOf: url as! URL) else{
+            //let urlString = TMDBService.getPrependingURL() + posterPath
+            let urlString =  posterPath
+            guard let url = URL(string: urlString) else{
+                completion(nil)
+                return
+            }
+            
+            guard let data = try? Data(contentsOf: url) else{
                 completion(nil)
                 return
             }
