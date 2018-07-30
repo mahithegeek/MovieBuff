@@ -27,12 +27,23 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
         clearOldSearch()
         let dataProvider = MovieDataprovider(provider: providerType.iTunesService)
-        dataProvider.searchMovies(searchString: searchString, completion: completion)
+        
+        func searchResultsCallback(movies:[Movie]?,error:NSError?) {
+            guard let movies = movies else{
+                completion(nil,error)
+                return
+            }
+            
+            self.updateModel(movies: movies)
+            completion(movies,nil)
+        }
+        dataProvider.searchMovies(searchString: searchString, completion: searchResultsCallback)
     }
     
     func clearOldSearch () {
         self.imageTasks.removeAll()
         self.imageCompletionHandler.removeAll()
+        self.movies.removeAll()
         self.delegate?.reloadView()
         
     }
@@ -80,7 +91,7 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     }
     
     
-    func updateModel(movies:[Movie]){
+    private func updateModel(movies:[Movie]){
         self.movies = movies
         print("count after \(self.movies.count)")
     }
@@ -133,7 +144,12 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
         print("Setting up image download for image \(url) count of tasks \(self.imageTasks.count)")
     }
     
-    func imageDownloaded(position: Int,image: UIImage) {
+    func imageDownloaded(position: Int,image: UIImage?,error:Error?) {
+        if error != nil {
+            print("Error occured while downloading Image  for position \(position)")
+            imageCompletionHandler[position]!(UIImage(named: "image_error"))
+            return
+        }
         print("Image downloaded for position \(position)")
         imageCompletionHandler[position]!(image)
     }

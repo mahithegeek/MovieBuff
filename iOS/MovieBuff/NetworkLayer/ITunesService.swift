@@ -61,7 +61,11 @@ class ITunesService: MovieServiceProtocol {
         var movieObjectsArray = [Movie]()
         
         for movie in array {
-            let kind : String = movie["kind"] as! String
+            guard let kind : String = movie["kind"] as? String
+                else{
+                    continue
+            }
+            
             if(kind == "feature-movie") {
                 let movieObject = Movie(context: nil)
                 // movieObject.overView = movie["longDescription"] as? String

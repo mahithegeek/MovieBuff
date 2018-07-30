@@ -33,8 +33,6 @@ extension MovieSearchViewController : UISearchBarDelegate {
                 return
             }
             
-            self.searchViewModel.updateModel(movies: movies)
-            
             reloadView()
             
         }

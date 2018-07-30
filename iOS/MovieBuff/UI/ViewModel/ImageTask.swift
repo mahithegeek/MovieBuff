@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol ImageTaskDownloader {
-    func imageDownloaded(position:Int,image:UIImage,error:Error)
+    func imageDownloaded(position:Int,image:UIImage?,error:Error?)
 }
 
 class ImageTask {
@@ -61,6 +61,7 @@ class ImageTask {
     private func downloadTaskCompletionHandler(url:URL?, response: URLResponse?, error:Error?) {
         if let error = error {
             print("Error downloading",error)
+            self.delegate.imageDownloaded(position: self.position,image:nil,error:error)
             return
         }
         
@@ -70,9 +71,11 @@ class ImageTask {
         
         DispatchQueue.main.async {
             self.image = image
-            self.delegate.imageDownloaded(position: self.position,image:image)
+            self.delegate.imageDownloaded(position: self.position,image:image,error:nil)
         }
         self.isFinishedDownloading = true;
+        
+        
     }
     
 }
