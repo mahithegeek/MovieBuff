@@ -14,13 +14,16 @@ protocol MovieSearchViewModelView:AnyObject {
     func reloadView()
 }
 class MovieSearchViewModel : NSObject,ImageTaskDownloader {
-    private var movies : [NSManagedObject]
+    private var movies : [NSManagedObject]?
     private var imageTasks = [Int:ImageTask]()
     private let session = URLSession(configuration: URLSessionConfiguration.default)
     var imageCompletionHandler  = [Int:((UIImage?)->Void)]()
     weak var delegate : MovieSearchViewModelView?
-    init(movies:[Movie]){
-        self.movies = movies
+    private var dataProvider : MovieDataprovider
+    
+    init(dataProvider:MovieDataprovider) {
+        self.dataProvider = dataProvider
+        
     }
     
     
@@ -43,7 +46,7 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     func clearOldSearch () {
         self.imageTasks.removeAll()
         self.imageCompletionHandler.removeAll()
-        self.movies.removeAll()
+        self.movies?.removeAll()
         self.delegate?.reloadView()
         
     }
@@ -72,32 +75,39 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
         
         switch sectionNumber {
         case 0:
-            result = (self.movies.count)
+            guard let movies = self.movies else{
+                result = 0
+                return result
+            }
+            result = movies.count
         default:
             return 1
             
         }
-        
-        
         return result
     }
     
     func modelForCell (section:Int,row:Int) -> Movie? {
         
-        if(self.movies.count == 0){
+        guard let movies = self.movies else {
             return nil
         }
-        return self.movies[row] as? Movie
+        
+        return movies[row] as? Movie
     }
     
     
     private func updateModel(movies:[Movie]){
         self.movies = movies
-        print("count after \(self.movies.count)")
+        print("count after \(self.movies?.count ?? 0)")
     }
     
-    func getSelectedRowObject(row:Int)->Movie {
-        return (self.movies[row] as? Movie)!
+    func getSelectedRowObject(row:Int)->Movie? {
+        guard let movies = self.movies else {
+            return nil
+        }
+        
+        return (movies[row] as? Movie)!
     }
     
     
