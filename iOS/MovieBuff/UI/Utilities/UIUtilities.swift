@@ -13,7 +13,7 @@ class UIUtilities{
     
     
     class func createAlert(title:String,message:String)->UIAlertController{
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         return alert
     }
 }

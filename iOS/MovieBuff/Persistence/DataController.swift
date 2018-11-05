@@ -87,7 +87,7 @@ class DataController : NSObject {
     }
     
     func saveMoviePosterImage(movie:Movie,downloadedImage:UIImage)->Bool{
-        guard let imageData = UIImageJPEGRepresentation(downloadedImage, 1.0) else{
+        guard let imageData = downloadedImage.jpegData(compressionQuality: 1.0) else{
             return false
         }
         let fileName = getDocumentsDirectory().appendingPathComponent(getRelativePath(id: movie.getID()))

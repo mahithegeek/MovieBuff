@@ -46,7 +46,7 @@ class weMakeSitesService : MovieServiceProtocol {
         let code = json??["code"] as? Int
         let message = json??["message"] as? String
         let userInfo : [NSObject : AnyObject] = [NSLocalizedDescriptionKey as NSObject : NSLocalizedString(message!, comment: "") as AnyObject]
-        let error = NSError(domain: "Service Error", code: code!, userInfo: userInfo)
+        let error = NSError(domain: "Service Error", code: code!, userInfo: userInfo as! [String : Any])
         return error
     }
     
@@ -102,6 +102,10 @@ private enum weMakeSitesIMDBService {
 }
 
 extension weMakeSitesIMDBService : TargetType {
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL : URL {return URL(string:"http://imdb.wemakesites.net/api")!}
     var path : String {
         switch self {
@@ -143,7 +147,7 @@ extension weMakeSitesIMDBService : TargetType {
     var task : Task {
         switch self{
         case .getMoviesForActor:
-            return .request
+            return .requestPlain
             
         }
     }

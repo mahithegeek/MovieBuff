@@ -86,7 +86,7 @@ class MovieDetailsViewController: UIViewController {
         }
         
         let alertCOntroller = UIUtilities.createAlert(title: title, message: message)
-        let cancelAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
         alertCOntroller.addAction(cancelAction)
         self.present(alertCOntroller, animated: true, completion: nil)
     }
