@@ -46,6 +46,7 @@ class ITunesService: MovieServiceProtocol {
         var response : [String:Any]?
         do{
             response =  try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
+            print(response)
         } catch let parseError {
             //error
             return (nil,parseError)
@@ -70,8 +71,10 @@ class ITunesService: MovieServiceProtocol {
                 let movieObject = Movie(context: nil)
                 // movieObject.overView = movie["longDescription"] as? String
                 movieObject.setValue(movie["trackName"], forKey: "title")
-                movieObject.setValue(String(movie["trackId"] as! Int), forKey: "id")
+                movieObject.setValue((movie["trackId"]), forKey: "id")
                 movieObject.setValue(getEnhancedThumbNailURL(artWorkurl: movie["artworkUrl100"]! as! String) , forKey: "posterPath")
+                //movieObject.setValue( movie["collectionViewUrl"]  , forKey: "posterPath")
+                //guard let posterPath =
                 //movieObject.setValue("https://is5-ssl.mzstatic.com/image/thumb/Video118/v4/02/0e/c9/020ec98b-f4b3-05e9-2de3-5e7d0363b298/source/600x600bb.jpg", forKey: "posterPath")
                 movieObject.setValue(movie["longDescription"], forKey: "overView")
                 movieObjectsArray.append(movieObject)

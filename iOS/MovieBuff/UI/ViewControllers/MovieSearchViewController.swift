@@ -13,8 +13,8 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
     @IBOutlet var searchBar : UISearchBar!
     @IBOutlet var collectionView : UICollectionView!
     
-  let sectionInsets = UIEdgeInsets(top: 10.0, left: 10, bottom: 10.0, right: 10)
-  let itemsPerRow: CGFloat = 3
+    let sectionInsets = UIEdgeInsets(top: 50.0, left: 10.0, bottom: 50.0, right: 10.0)
+    let itemsPerRow: CGFloat = 2
     
     var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
@@ -48,7 +48,15 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
                     return 
             }
             DispatchQueue.main.async{
-                cell.thumbNail?.image = image
+                
+                //cell.thumbNail?.layer.masksToBounds = true
+                //cell.thumbNail?.layer.cornerRadius = 6
+                cell.contentView.layer.cornerRadius = 2.0
+                cell.contentView.layer.borderWidth = 1.0
+                cell.contentView.layer.borderColor = UIColor.clear.cgColor
+                cell.contentView.layer.masksToBounds = true
+                print("width \(image.size.width) and height is  \(image.size.height)")
+                cell.thumbNail?.image = image//self.resizeImage(image: image)
             }
             
         }
@@ -86,5 +94,18 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+    
+    func resizeImage(image: UIImage) -> UIImage {
+        
+        let newWidth : CGFloat = 300.0;
+        let scale = newWidth / image.size.width
+        let newHeight : CGFloat = 225.0//image.size.height * scale
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        print("width : %d and height : %d",newImage?.size.width,newImage?.size.height)
+        return newImage!
     }
 }
