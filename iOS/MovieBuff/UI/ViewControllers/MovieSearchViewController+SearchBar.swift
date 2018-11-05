@@ -27,7 +27,7 @@ extension MovieSearchViewController : UISearchBarDelegate {
         func searchResultsCallback(movies : [Movie]?,error:NSError?) {
             SwiftSpinner.hide()
             if error != nil {
-                print(error ?? "Something wrong while fetching moves")
+                print(error ?? "Something wrong while fetching movies")
                 let alert = UIAlertController(title: "Error!!!", message: error?.localizedDescription, preferredStyle: .alert)
                 present(alert, animated: true, completion: nil)
                 return
