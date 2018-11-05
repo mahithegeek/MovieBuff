@@ -46,7 +46,7 @@ class weMakeSitesService : MovieServiceProtocol {
         let code = json??["code"] as? Int
         let message = json??["message"] as? String
         let userInfo : [NSObject : AnyObject] = [NSLocalizedDescriptionKey as NSObject : NSLocalizedString(message!, comment: "") as AnyObject]
-        let error = NSError(domain: "Service Error", code: code!, userInfo: userInfo as! [String : Any])
+        let error = NSError(domain: "Service Error", code: code!, userInfo: (userInfo as! [String : Any]))
         return error
     }
     

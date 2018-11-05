@@ -96,16 +96,5 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
         }
     }
     
-    func resizeImage(image: UIImage) -> UIImage {
-        
-        let newWidth : CGFloat = 300.0;
-        let scale = newWidth / image.size.width
-        let newHeight : CGFloat = 225.0//image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        print("width : %d and height : %d",newImage?.size.width,newImage?.size.height)
-        return newImage!
-    }
+    
 }

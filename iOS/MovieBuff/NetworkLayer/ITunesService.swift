@@ -46,7 +46,7 @@ class ITunesService: MovieServiceProtocol {
         var response : [String:Any]?
         do{
             response =  try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
-            print(response)
+            print(response ?? "parseJSON: Nil response received")
         } catch let parseError {
             //error
             return (nil,parseError)
