@@ -8,7 +8,7 @@ target 'MovieBuff' do
   # Pods for MovieBuff
 	pod "Moya"
 	pod “SwiftSpinner”
-        pod “DZNEmptyDataSet”
+        pod "EmptyDataSet-Swift"
 
   target 'MovieBuffTests' do
     inherit! :search_paths

@@ -7,16 +7,16 @@
 //
 
 import UIKit
-import DZNEmptyDataSet
+import EmptyDataSet_Swift
 
-class BaseListViewController: UIViewController,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate {
+class BaseListViewController: UIViewController,EmptyDataSetSource,EmptyDataSetDelegate {
     @IBOutlet var tableView : UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-//        self.tableView.emptyDataSetSource = self
-//        self.tableView.emptyDataSetDelegate = self
+        self.tableView.emptyDataSetSource = self
+        self.tableView.emptyDataSetDelegate = self
 //        self.tableView.tableFooterView = UIView()
     }
 
