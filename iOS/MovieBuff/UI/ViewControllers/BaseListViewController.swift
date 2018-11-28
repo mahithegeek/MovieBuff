@@ -17,7 +17,7 @@ class BaseListViewController: UIViewController,EmptyDataSetSource,EmptyDataSetDe
         // Do any additional setup after loading the view.
         self.tableView.emptyDataSetSource = self
         self.tableView.emptyDataSetDelegate = self
-//        self.tableView.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {

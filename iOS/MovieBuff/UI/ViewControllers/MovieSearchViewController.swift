@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftSpinner
-class MovieSearchViewController: BaseListViewController,UICollectionViewDataSource,MovieSearchViewModelView {
+class MovieSearchViewController: UIViewController, UICollectionViewDataSource,MovieSearchViewModelView {
     
     @IBOutlet var searchBar : UISearchBar!
     @IBOutlet var collectionView : UICollectionView!
@@ -19,15 +19,16 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
     var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
 
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //self.tableView.reloadData()
+        self.collectionView.backgroundColor = UIColor(red: 1.00, green: 0.95, blue: 0.9, alpha: 1.0)
         searchViewModel.delegate = self
         
     }
 
-    override func didReceiveMemoryWarning() {
+     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }

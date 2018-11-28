@@ -18,6 +18,7 @@ class MovieWatchListViewController: BaseListViewController,UITableViewDelegate,U
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view.backgroundColor = UIColor(red: 1.00, green: 0.95, blue: 0.9, alpha: 1.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -19,7 +19,10 @@ class MovieWatchListViewModel : tableViewModel{
     }
     
     func getNumberOfSections() -> Int {
-        return 1;
+        if(self.movies.count > 0){
+            return 1
+        }
+        return 0
     }
     
     func getNumberOfRows() -> Int {
