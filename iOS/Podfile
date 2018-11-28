@@ -6,9 +6,9 @@ target 'MovieBuff' do
   use_frameworks!
 
   # Pods for MovieBuff
-	pod ‘Moya’,’8.0.2’
+	pod "Moya"
 	pod “SwiftSpinner”
-        pod “DZNEmptyDataSet”
+        pod "EmptyDataSet-Swift"
 
   target 'MovieBuffTests' do
     inherit! :search_paths

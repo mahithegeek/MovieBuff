@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftSpinner
-class MovieSearchViewController: BaseListViewController,UICollectionViewDataSource,MovieSearchViewModelView {
+class MovieSearchViewController: UIViewController, UICollectionViewDataSource,MovieSearchViewModelView {
     
     @IBOutlet var searchBar : UISearchBar!
     @IBOutlet var collectionView : UICollectionView!
@@ -19,15 +19,16 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
     var searchViewModel : MovieSearchViewModel!
     var loadingIndicator : UIActivityIndicatorView?
 
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         //self.tableView.reloadData()
+        self.collectionView.backgroundColor = UIColor(red: 1.00, green: 0.95, blue: 0.9, alpha: 1.0)
         searchViewModel.delegate = self
         
     }
 
-    override func didReceiveMemoryWarning() {
+     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -96,16 +97,5 @@ class MovieSearchViewController: BaseListViewController,UICollectionViewDataSour
         }
     }
     
-    func resizeImage(image: UIImage) -> UIImage {
-        
-        let newWidth : CGFloat = 300.0;
-        let scale = newWidth / image.size.width
-        let newHeight : CGFloat = 225.0//image.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        print("width : %d and height : %d",newImage?.size.width,newImage?.size.height)
-        return newImage!
-    }
+    
 }

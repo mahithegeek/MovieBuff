@@ -96,11 +96,8 @@ class Movie : NSManagedObject{
         }
         self.setValue(overView, forKey: "overView")
         
-        var rating = String(describing: json["vote_average"])
+        let rating = String(describing: json["vote_average"])
         
-        if(rating == nil) {
-            rating = ""
-        }
         self.setValue(rating, forKey: "rating")
     }
 }

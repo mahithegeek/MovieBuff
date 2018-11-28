@@ -15,7 +15,7 @@ extension MovieSearchViewController : UICollectionViewDelegateFlowLayout{
 //    //MARK collection view flow layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let paddingSpace : CGFloat =  self.sectionInsets.left * (itemsPerRow + 1)
-        let availableWidth = view.frame.width - paddingSpace
+        let availableWidth = self.view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow
         
         return CGSize(width: widthPerItem, height: widthPerItem)

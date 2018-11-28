@@ -66,6 +66,10 @@ private enum TMDBProperties {
 }
 
 extension TMDBMovieService : TargetType {
+    var headers: [String : String]? {
+        return nil
+    }
+    
     var baseURL : URL {return URL(string:TMDBProperties.baseURL)!}
     var path : String {
         switch self {
@@ -107,7 +111,7 @@ extension TMDBMovieService : TargetType {
     var task : Task {
         switch self{
         case .searchMovies:
-            return .request
+            return .requestPlain
             
         }
     }
