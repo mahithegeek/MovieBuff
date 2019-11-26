@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Moya
+
 
 class HomeViewController: UIViewController {
     
@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
     private func setUpMovieWatchListVC (tabController : UITabBarController){
         let destinationController = tabController.viewControllers?[0] as! UINavigationController
         let movieWatchListViewController = destinationController.topViewController as! MovieWatchListViewController
-        movieWatchListViewController.watchListViewModel = MovieWatchListViewModel(movies: DataController.sharedInstance.getMovieWatchList())
+        //movieWatchListViewController.watchListViewModel = MovieWatchListViewModel(movies: DataController.sharedInstance.getMovieWatchList())
     }
     
     private func setUpMovieSearchVC (tabController : UITabBarController){

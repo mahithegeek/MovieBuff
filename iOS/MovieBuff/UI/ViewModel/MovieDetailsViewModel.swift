@@ -16,19 +16,20 @@ class MovieDetailsViewModel {
     }
     
     func getPosterImage(completion : @escaping (UIImage?)->Void) {
-        guard let posterFilePath = self.movie.getposterFilePath() else{
-            downloadPoster(completion: completion)
-            return
-        }
-        //let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath))
-        let filePath = DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath)
-        print(filePath)
-        if FileManager.default.fileExists(atPath: filePath.path){
-            print("Poster Image found")
-            let image = UIImage(contentsOfFile: filePath.path)
-            completion(image)
-            return
-        }
+        
+//        guard let posterFilePath = self.movie.posterPath else{
+//            downloadPoster(completion: completion)
+//            return
+//        }
+//        //let filePath = String(describing: DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath))
+//        let filePath = DataController.sharedInstance.getMovieAbsoluteFileURL(movieFilePath: posterFilePath)
+//        print(filePath)
+//        if FileManager.default.fileExists(atPath: filePath.path){
+//            print("Poster Image found")
+//            let image = UIImage(contentsOfFile: filePath.path)
+//            completion(image)
+//            return
+//        }
         
         completion(nil)
         return
@@ -36,29 +37,31 @@ class MovieDetailsViewModel {
     
     private func downloadPoster(completion:@escaping (UIImage?)->Void){
         
-        func onMovieDownload(image:UIImage?){
-            if image != nil && !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
-                print("Unable to save poster image")
-            }
-            completion(image)
-        }
-        
-        MovieHelper().downloadPosterImage(movie: self.movie, completion: onMovieDownload)
+//        func onMovieDownload(image:UIImage?){
+//            if image != nil && !DataController.sharedInstance.saveMoviePosterImage(movie: self.movie, downloadedImage: image!){
+//                print("Unable to save poster image")
+//            }
+//            completion(image)
+//        }
+//
+//        MovieHelper().downloadPosterImage(movie: self.movie, completion: onMovieDownload)
     }
     
     func getMovieTitle()->String?{
-        return self.movie.getTitleString()
+        return self.movie.title
     }
     
     func getMovieOverView()->String? {
-        return self.movie.getMovieOverView()
+        return self.movie.overView
     }
     
     func saveMovie()->Bool{
-       return DataController.sharedInstance.addMovieToWatchList(movie: self.movie)
+       
+        return false//return DataController.sharedInstance.addMovieToWatchList(movie: self.movie)
     }
     
     func canShowSaveMovie()->Bool{
-        return !self.movie.isMovieSaved()
+        return false
+        //return !self.movie.isMovieSaved()
     }
 }

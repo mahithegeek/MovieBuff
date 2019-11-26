@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class  MovieHelper {
     
-    func downloadPosterImage(movie:Movie,completion:@escaping (UIImage?)->Void){
+    func downloadPosterImage(movie:MovieCoreDataObject,completion:@escaping (UIImage?)->Void){
         DispatchQueue.global().async {
             guard let posterPath: String  = movie.getposterPath() else{
                 completion(nil)
