@@ -47,8 +47,8 @@ class DataController : NSObject {
     
    
     
-    func addMovieToWatchList (movie : Movie)->Bool {
-        let movieToSave = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: self.managedObjectContext) as! Movie
+    func addMovieToWatchList (movie : MovieCoreDataObject)->Bool {
+        let movieToSave = NSEntityDescription.insertNewObject(forEntityName: "Movie", into: self.managedObjectContext) as! MovieCoreDataObject
         movieToSave.title = movie.title
         movieToSave.id = movie.id
         movieToSave.overView = movie.overView
@@ -65,12 +65,12 @@ class DataController : NSObject {
         
     }
     
-    func getMovieWatchList()->[Movie] {
-        let moviesFetch = NSFetchRequest<NSManagedObject>(entityName: "Movie")
-        var fetchedMovies : [Movie]
+    func getMovieWatchList()->[MovieCoreDataObject] {
+        let moviesFetch = NSFetchRequest<NSManagedObject>(entityName: "MovieCoreDataObject")
+        var fetchedMovies : [MovieCoreDataObject]
         
         do {
-            fetchedMovies = try self.managedObjectContext.fetch(moviesFetch) as! [Movie]
+            fetchedMovies = try self.managedObjectContext.fetch(moviesFetch) as! [MovieCoreDataObject]
         } catch {
             fatalError("Failed to fetch Movies: \(error)")
         }
@@ -79,14 +79,14 @@ class DataController : NSObject {
     }
     
     //MARK - Model methods
-    func createMovieObjectWithJSON(json:[String : Any])->Movie {
+    func createMovieObjectWithJSON(json:[String : Any])->MovieCoreDataObject {
         let childContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         childContext.parent = self.managedObjectContext
-        let movie = Movie(json: json, context: childContext)
+        let movie = MovieCoreDataObject(json: json, context: childContext)
         return movie
     }
     
-    func saveMoviePosterImage(movie:Movie,downloadedImage:UIImage)->Bool{
+    func saveMoviePosterImage(movie:MovieCoreDataObject,downloadedImage:UIImage)->Bool{
         guard let imageData = downloadedImage.jpegData(compressionQuality: 1.0) else{
             return false
         }

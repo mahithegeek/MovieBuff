@@ -1,34 +1,20 @@
 PODS:
-  - Alamofire (4.8.0)
-  - EmptyDataSet-Swift (4.2.0)
-  - Moya (12.0.1):
-    - Moya/Core (= 12.0.1)
-  - Moya/Core (12.0.1):
-    - Alamofire (~> 4.1)
-    - Result (~> 4.0)
-  - Result (4.0.0)
-  - SwiftSpinner (1.6.2)
+  - EmptyDataSet-Swift (5.0.0)
+  - SwiftSpinner (2.1.0)
 
 DEPENDENCIES:
   - EmptyDataSet-Swift
-  - Moya
   - SwiftSpinner
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - EmptyDataSet-Swift
-    - Moya
-    - Result
     - SwiftSpinner
 
 SPEC CHECKSUMS:
-  Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
-  EmptyDataSet-Swift: 1fa0b35f530a35f852ecb2b53564728b0c300aaf
-  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
-  Result: 7645bb3f50c2ce726dd0ff2fa7b6f42bbe6c3713
-  SwiftSpinner: 3a4c6dea425e5a31b908a8b1dd5dcd1ad4d96340
+  EmptyDataSet-Swift: eb382c0c87a2d9c678077385a595cec52da38171
+  SwiftSpinner: 0f15c006307f8d8bbac075638927ec1361b565d7
 
-PODFILE CHECKSUM: 1cbdc4daddc621aed8fd2defc2458253d0ea8d89
+PODFILE CHECKSUM: 8f23373676e66b6ab3431854fd04744d1c41f635
 
 COCOAPODS: 1.5.3

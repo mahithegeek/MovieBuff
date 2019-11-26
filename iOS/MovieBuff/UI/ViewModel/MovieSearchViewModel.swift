@@ -14,7 +14,7 @@ protocol MovieSearchViewModelView:AnyObject {
     func reloadView()
 }
 class MovieSearchViewModel : NSObject,ImageTaskDownloader {
-    private var movies : [NSManagedObject]?
+    private var movies : [Movie]?
     private var imageTasks = [Int:ImageTask]()
     private let session = URLSession(configuration: URLSessionConfiguration.default)
     var imageCompletionHandler  = [Int:((UIImage?)->Void)]()
@@ -27,11 +27,11 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
     }
     
     
-    func searchMovies (searchString : String,completion:@escaping ([Movie]?,NSError?)->Void) {
+    func searchMovies (searchString : String,completion:@escaping ([Movie]?,Error?)->Void) {
         clearOldSearch()
         let dataProvider = MovieDataprovider(provider: providerType.iTunesService)
         
-        func searchResultsCallback(movies:[Movie]?,error:NSError?) {
+        func searchResultsCallback(movies:[Movie]?,error:Error?) {
             guard let movies = movies else{
                 completion(nil,error)
                 return
@@ -93,7 +93,7 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
             return nil
         }
         
-        return movies[row] as? Movie
+        return movies[row]
     }
     
     
@@ -107,7 +107,7 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
             return nil
         }
         
-        return (movies[row] as? Movie)!
+        return (movies[row])
     }
     
     
@@ -121,12 +121,8 @@ class MovieSearchViewModel : NSObject,ImageTaskDownloader {
                         return
                 }
                 
-                guard let posterURLString = movieObject.posterPath
-                    else{
-                        completion(nil)
-                        return
-                }
-                guard let posterURL = URL(string: posterURLString)
+                
+                guard let posterURL = URL(string: movieObject.posterPath)
                     else{
                         completion(nil)
                         return

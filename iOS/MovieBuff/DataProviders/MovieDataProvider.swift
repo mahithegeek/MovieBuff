@@ -9,18 +9,18 @@
 import Foundation
 
 enum providerType {
-    case weMakeSites
-    case tmdbService
+    //case weMakeSites
+    //case tmdbService
     case iTunesService
 }
 
 extension providerType {
         var getServiceObject:MovieServiceProtocol {
             switch self{
-            case .weMakeSites:
-                return weMakeSitesService()
-            case .tmdbService :
-                return TMDBService()
+//            case .weMakeSites:
+//                return weMakeSitesService()
+//            case .tmdbService :
+//                return TMDBService()
             case .iTunesService :
                 return ITunesService()
         }
@@ -35,10 +35,14 @@ class MovieDataprovider  {
     }
     
     public func getSearchResults(searchString : String,completion:@escaping (([[BaseFilmModel]]??,NSError?)->Void)){
-        self.movieService.getSearchResults(searchString: searchString, completion: completion)
+       // self.movieService.getSearchResults(searchString: searchString, completion: completion)
     }
     
-    public func searchMovies (searchString : String,completion : @escaping ([Movie]?,NSError?)->Void) {
+//    public func searchMovies (searchString : String,completion : @escaping ([MovieCoreDataObject]?,NSError?)->Void) {
+//        self.movieService.searchMovies(searchString: searchString, completion: completion)
+//    }
+    
+    public func searchMovies(searchString : String, completion : @escaping ([Movie]?,Error?)->Void) {
         self.movieService.searchMovies(searchString: searchString, completion: completion)
     }
     

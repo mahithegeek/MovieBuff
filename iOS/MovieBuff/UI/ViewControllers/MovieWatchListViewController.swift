@@ -22,7 +22,7 @@ class MovieWatchListViewController: BaseListViewController,UITableViewDelegate,U
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.watchListViewModel.refreshMovieWatchList()
+        //self.watchListViewModel.refreshMovieWatchList()
         self.tableView.reloadData()
     }
     
@@ -34,17 +34,19 @@ class MovieWatchListViewController: BaseListViewController,UITableViewDelegate,U
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return 0
         return self.watchListViewModel.getNumberOfRows();
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.watchListViewModel.getNumberOfSections()
+        return 1
+        //return self.watchListViewModel.getNumberOfSections()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WatchList", for: indexPath)
 
-        let movie = self.watchListViewModel.getModelForCell(indexPath: indexPath) as! Movie
+        let movie = self.watchListViewModel.getModelForCell(indexPath: indexPath) as! MovieCoreDataObject
         cell.textLabel?.text = movie.getTitleString()
         return cell
     }
@@ -55,7 +57,6 @@ class MovieWatchListViewController: BaseListViewController,UITableViewDelegate,U
         let movieDetailsViewModel = MovieDetailsViewModel(movie: movie as! Movie)
         movieDetailsVC.movieDetailsViewModel = movieDetailsViewModel
         self.navigationController?.pushViewController(movieDetailsVC, animated: true)
-        
         
     }
     
